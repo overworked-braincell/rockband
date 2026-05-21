@@ -1,0 +1,801 @@
+PERFORMANCE_PLAYER_ID,PERFORMANCE_ID,PERFORMANCE_DATETIME,SCORE,RATING,PLAYER_ID,PLAYER_NAME,PHONE_NUMBER,EMAIL,PREFERRED_INSTRUMENT_ID,INSTRUMENT_ID,INSTRUMENT_NAME,SONG_ID,SONG_NAME,ARTIST,RELEASE_YEAR,SONG_DIFFICULTY_RATING,SONG_FUN_RATING
+1,1,2026-02-04 00:00:00.000,16517,6.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+2,1,2026-02-04 00:00:00.000,16517,6.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+3,1,2026-02-04 00:00:00.000,16517,6.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+4,1,2026-02-04 00:00:00.000,16517,6.7,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+5,2,2026-02-05 00:00:00.000,46750,4.6,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+6,2,2026-02-05 00:00:00.000,46750,4.6,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+7,2,2026-02-05 00:00:00.000,46750,4.6,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+8,2,2026-02-05 00:00:00.000,46750,4.6,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+9,3,2026-01-13 00:00:00.000,51119,8.0,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+10,3,2026-01-13 00:00:00.000,51119,8.0,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+11,3,2026-01-13 00:00:00.000,51119,8.0,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+12,3,2026-01-13 00:00:00.000,51119,8.0,20,Garfield,555-100-1020,garfield@toonmail.com,3,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+13,4,2025-12-20 00:00:00.000,28606,4.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+14,4,2025-12-20 00:00:00.000,28606,4.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+15,4,2025-12-20 00:00:00.000,28606,4.4,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+16,4,2025-12-20 00:00:00.000,28606,4.4,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+17,5,2026-03-03 00:00:00.000,36951,1.7,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+18,5,2026-03-03 00:00:00.000,36951,1.7,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+19,5,2026-03-03 00:00:00.000,36951,1.7,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+20,5,2026-03-03 00:00:00.000,36951,1.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+21,6,2025-05-02 00:00:00.000,17283,1.2,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+22,6,2025-05-02 00:00:00.000,17283,1.2,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+23,6,2025-05-02 00:00:00.000,17283,1.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+24,6,2025-05-02 00:00:00.000,17283,1.2,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,3,Vocals,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+25,7,2026-03-25 00:00:00.000,15076,8.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+26,7,2026-03-25 00:00:00.000,15076,8.5,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+27,7,2026-03-25 00:00:00.000,15076,8.5,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+28,7,2026-03-25 00:00:00.000,15076,8.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+29,8,2025-04-29 00:00:00.000,57395,5.3,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+30,8,2025-04-29 00:00:00.000,57395,5.3,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+31,8,2025-04-29 00:00:00.000,57395,5.3,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+32,8,2025-04-29 00:00:00.000,57395,5.3,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+33,9,2026-02-12 00:00:00.000,54580,7.6,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+34,9,2026-02-12 00:00:00.000,54580,7.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,19,We Will Rock You,Queen,1977,3.0,9.0
+35,9,2026-02-12 00:00:00.000,54580,7.6,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+36,9,2026-02-12 00:00:00.000,54580,7.6,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,19,We Will Rock You,Queen,1977,3.0,9.0
+37,10,2026-03-11 00:00:00.000,23375,4.3,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+38,10,2026-03-11 00:00:00.000,23375,4.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+39,10,2026-03-11 00:00:00.000,23375,4.3,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+40,10,2026-03-11 00:00:00.000,23375,4.3,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+41,11,2025-08-21 00:00:00.000,9096,7.9,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+42,11,2025-08-21 00:00:00.000,9096,7.9,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+43,11,2025-08-21 00:00:00.000,9096,7.9,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+44,11,2025-08-21 00:00:00.000,9096,7.9,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+45,12,2026-01-14 00:00:00.000,72329,2.1,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+46,12,2026-01-14 00:00:00.000,72329,2.1,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+47,12,2026-01-14 00:00:00.000,72329,2.1,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+48,12,2026-01-14 00:00:00.000,72329,2.1,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+49,13,2025-12-07 00:00:00.000,76765,2.9,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+50,13,2025-12-07 00:00:00.000,76765,2.9,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+51,13,2025-12-07 00:00:00.000,76765,2.9,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+52,13,2025-12-07 00:00:00.000,76765,2.9,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+53,14,2025-05-06 00:00:00.000,52133,9.2,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+54,14,2025-05-06 00:00:00.000,52133,9.2,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+55,14,2025-05-06 00:00:00.000,52133,9.2,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+56,14,2025-05-06 00:00:00.000,52133,9.2,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+57,15,2025-05-30 00:00:00.000,9523,0.7,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+58,15,2025-05-30 00:00:00.000,9523,0.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+59,15,2025-05-30 00:00:00.000,9523,0.7,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+60,15,2025-05-30 00:00:00.000,9523,0.7,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+61,16,2026-01-02 00:00:00.000,22468,5.2,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+62,16,2026-01-02 00:00:00.000,22468,5.2,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+63,16,2026-01-02 00:00:00.000,22468,5.2,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+64,16,2026-01-02 00:00:00.000,22468,5.2,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+65,17,2025-08-30 00:00:00.000,7297,7.7,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+66,17,2025-08-30 00:00:00.000,7297,7.7,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+67,17,2025-08-30 00:00:00.000,7297,7.7,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+68,17,2025-08-30 00:00:00.000,7297,7.7,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+69,18,2025-12-09 00:00:00.000,61833,5.3,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+70,18,2025-12-09 00:00:00.000,61833,5.3,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+71,18,2025-12-09 00:00:00.000,61833,5.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+72,18,2025-12-09 00:00:00.000,61833,5.3,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+73,19,2025-05-14 00:00:00.000,79554,6.5,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+74,19,2025-05-14 00:00:00.000,79554,6.5,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+75,19,2025-05-14 00:00:00.000,79554,6.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+76,19,2025-05-14 00:00:00.000,79554,6.5,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+77,20,2025-09-30 00:00:00.000,6621,0.3,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+78,20,2025-09-30 00:00:00.000,6621,0.3,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+79,20,2025-09-30 00:00:00.000,6621,0.3,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+80,20,2025-09-30 00:00:00.000,6621,0.3,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+81,21,2025-10-17 00:00:00.000,41256,4.3,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+82,21,2025-10-17 00:00:00.000,41256,4.3,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+83,21,2025-10-17 00:00:00.000,41256,4.3,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+84,21,2025-10-17 00:00:00.000,41256,4.3,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+85,22,2025-07-05 00:00:00.000,27216,7.2,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+86,22,2025-07-05 00:00:00.000,27216,7.2,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+87,22,2025-07-05 00:00:00.000,27216,7.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+88,22,2025-07-05 00:00:00.000,27216,7.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+89,23,2025-11-30 00:00:00.000,17247,0.1,13,Finn the Human,555-100-1013,finn@toonmail.com,2,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+90,23,2025-11-30 00:00:00.000,17247,0.1,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+91,23,2025-11-30 00:00:00.000,17247,0.1,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+92,23,2025-11-30 00:00:00.000,17247,0.1,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+93,24,2025-05-28 00:00:00.000,73242,3.2,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+94,24,2025-05-28 00:00:00.000,73242,3.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+95,24,2025-05-28 00:00:00.000,73242,3.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+96,24,2025-05-28 00:00:00.000,73242,3.2,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+97,25,2026-03-18 00:00:00.000,63233,7.2,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+98,25,2026-03-18 00:00:00.000,63233,7.2,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+99,25,2026-03-18 00:00:00.000,63233,7.2,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+100,25,2026-03-18 00:00:00.000,63233,7.2,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+101,26,2026-03-09 00:00:00.000,53619,6.4,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+102,26,2026-03-09 00:00:00.000,53619,6.4,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+103,26,2026-03-09 00:00:00.000,53619,6.4,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+104,26,2026-03-09 00:00:00.000,53619,6.4,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+105,27,2025-05-26 00:00:00.000,52149,0.4,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+106,27,2025-05-26 00:00:00.000,52149,0.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+107,27,2025-05-26 00:00:00.000,52149,0.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+108,27,2025-05-26 00:00:00.000,52149,0.4,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+109,28,2026-01-06 00:00:00.000,93785,9.7,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+110,28,2026-01-06 00:00:00.000,93785,9.7,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+111,28,2026-01-06 00:00:00.000,93785,9.7,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+112,28,2026-01-06 00:00:00.000,93785,9.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+113,29,2026-01-03 00:00:00.000,48007,8.8,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+114,29,2026-01-03 00:00:00.000,48007,8.8,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,19,We Will Rock You,Queen,1977,3.0,9.0
+115,29,2026-01-03 00:00:00.000,48007,8.8,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+116,29,2026-01-03 00:00:00.000,48007,8.8,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,19,We Will Rock You,Queen,1977,3.0,9.0
+117,30,2025-08-25 00:00:00.000,38521,6.0,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+118,30,2025-08-25 00:00:00.000,38521,6.0,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+119,30,2025-08-25 00:00:00.000,38521,6.0,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+120,30,2025-08-25 00:00:00.000,38521,6.0,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+121,31,2025-07-07 00:00:00.000,43346,5.5,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+122,31,2025-07-07 00:00:00.000,43346,5.5,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+123,31,2025-07-07 00:00:00.000,43346,5.5,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+124,31,2025-07-07 00:00:00.000,43346,5.5,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+125,32,2025-11-15 00:00:00.000,67362,9.6,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+126,32,2025-11-15 00:00:00.000,67362,9.6,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+127,32,2025-11-15 00:00:00.000,67362,9.6,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+128,32,2025-11-15 00:00:00.000,67362,9.6,20,Garfield,555-100-1020,garfield@toonmail.com,3,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+129,33,2025-05-14 00:00:00.000,61386,3.2,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+130,33,2025-05-14 00:00:00.000,61386,3.2,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+131,33,2025-05-14 00:00:00.000,61386,3.2,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+132,33,2025-05-14 00:00:00.000,61386,3.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+133,34,2025-08-30 00:00:00.000,32544,1.4,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+134,34,2025-08-30 00:00:00.000,32544,1.4,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+135,34,2025-08-30 00:00:00.000,32544,1.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+136,34,2025-08-30 00:00:00.000,32544,1.4,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+137,35,2026-01-14 00:00:00.000,26095,1.7,19,Popeye,555-100-1019,popeye@toonmail.com,1,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+138,35,2026-01-14 00:00:00.000,26095,1.7,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+139,35,2026-01-14 00:00:00.000,26095,1.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+140,35,2026-01-14 00:00:00.000,26095,1.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+141,36,2026-01-07 00:00:00.000,14599,9.7,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+142,36,2026-01-07 00:00:00.000,14599,9.7,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+143,36,2026-01-07 00:00:00.000,14599,9.7,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+144,36,2026-01-07 00:00:00.000,14599,9.7,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+145,37,2025-09-11 00:00:00.000,72830,6.8,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+146,37,2025-09-11 00:00:00.000,72830,6.8,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+147,37,2025-09-11 00:00:00.000,72830,6.8,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+148,37,2025-09-11 00:00:00.000,72830,6.8,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+149,38,2025-11-25 00:00:00.000,9869,6.3,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+150,38,2025-11-25 00:00:00.000,9869,6.3,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+151,38,2025-11-25 00:00:00.000,9869,6.3,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+152,38,2025-11-25 00:00:00.000,9869,6.3,20,Garfield,555-100-1020,garfield@toonmail.com,3,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+153,39,2026-03-24 00:00:00.000,79227,4.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+154,39,2026-03-24 00:00:00.000,79227,4.7,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,5,Back in Black,AC/DC,1980,6.0,8.8
+155,39,2026-03-24 00:00:00.000,79227,4.7,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,2,Bass Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+156,39,2026-03-24 00:00:00.000,79227,4.7,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,5,Back in Black,AC/DC,1980,6.0,8.8
+157,40,2025-12-01 00:00:00.000,27727,8.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+158,40,2025-12-01 00:00:00.000,27727,8.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+159,40,2025-12-01 00:00:00.000,27727,8.2,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+160,40,2025-12-01 00:00:00.000,27727,8.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+161,41,2025-08-17 00:00:00.000,59902,8.6,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+162,41,2025-08-17 00:00:00.000,59902,8.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+163,41,2025-08-17 00:00:00.000,59902,8.6,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+164,41,2025-08-17 00:00:00.000,59902,8.6,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+165,42,2025-07-03 00:00:00.000,92578,0.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+166,42,2025-07-03 00:00:00.000,92578,0.6,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+167,42,2025-07-03 00:00:00.000,92578,0.6,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+168,42,2025-07-03 00:00:00.000,92578,0.6,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+169,43,2026-02-09 00:00:00.000,59806,3.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+170,43,2026-02-09 00:00:00.000,59806,3.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+171,43,2026-02-09 00:00:00.000,59806,3.3,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+172,43,2026-02-09 00:00:00.000,59806,3.3,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+173,44,2025-05-22 00:00:00.000,21967,1.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+174,44,2025-05-22 00:00:00.000,21967,1.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+175,44,2025-05-22 00:00:00.000,21967,1.8,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+176,44,2025-05-22 00:00:00.000,21967,1.8,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+177,45,2025-08-21 00:00:00.000,83475,4.3,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+178,45,2025-08-21 00:00:00.000,83475,4.3,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+179,45,2025-08-21 00:00:00.000,83475,4.3,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+180,45,2025-08-21 00:00:00.000,83475,4.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+181,46,2025-09-24 00:00:00.000,97673,7.9,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+182,46,2025-09-24 00:00:00.000,97673,7.9,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+183,46,2025-09-24 00:00:00.000,97673,7.9,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+184,46,2025-09-24 00:00:00.000,97673,7.9,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+185,47,2025-11-05 00:00:00.000,74553,3.6,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+186,47,2025-11-05 00:00:00.000,74553,3.6,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+187,47,2025-11-05 00:00:00.000,74553,3.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+188,47,2025-11-05 00:00:00.000,74553,3.6,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+189,48,2025-04-23 00:00:00.000,68553,9.3,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+190,48,2025-04-23 00:00:00.000,68553,9.3,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+191,48,2025-04-23 00:00:00.000,68553,9.3,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+192,48,2025-04-23 00:00:00.000,68553,9.3,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+193,49,2025-06-19 00:00:00.000,98293,0.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+194,49,2025-06-19 00:00:00.000,98293,0.3,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+195,49,2025-06-19 00:00:00.000,98293,0.3,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+196,49,2025-06-19 00:00:00.000,98293,0.3,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+197,50,2025-12-09 00:00:00.000,92350,7.1,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,1,Electric Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+198,50,2025-12-09 00:00:00.000,92350,7.1,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+199,50,2025-12-09 00:00:00.000,92350,7.1,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,2,Bass Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+200,50,2025-12-09 00:00:00.000,92350,7.1,20,Garfield,555-100-1020,garfield@toonmail.com,3,3,Vocals,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+201,51,2025-08-27 00:00:00.000,31281,4.1,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+202,51,2025-08-27 00:00:00.000,31281,4.1,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+203,51,2025-08-27 00:00:00.000,31281,4.1,19,Popeye,555-100-1019,popeye@toonmail.com,1,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+204,51,2025-08-27 00:00:00.000,31281,4.1,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+205,52,2026-01-24 00:00:00.000,47114,5.5,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+206,52,2026-01-24 00:00:00.000,47114,5.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+207,52,2026-01-24 00:00:00.000,47114,5.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+208,52,2026-01-24 00:00:00.000,47114,5.5,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+209,53,2025-12-12 00:00:00.000,82755,2.7,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+210,53,2025-12-12 00:00:00.000,82755,2.7,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+211,53,2025-12-12 00:00:00.000,82755,2.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+212,53,2025-12-12 00:00:00.000,82755,2.7,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+213,54,2025-10-12 00:00:00.000,84860,8.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+214,54,2025-10-12 00:00:00.000,84860,8.7,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+215,54,2025-10-12 00:00:00.000,84860,8.7,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+216,54,2025-10-12 00:00:00.000,84860,8.7,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+217,55,2025-05-31 00:00:00.000,81041,1.5,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+218,55,2025-05-31 00:00:00.000,81041,1.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+219,55,2025-05-31 00:00:00.000,81041,1.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+220,55,2025-05-31 00:00:00.000,81041,1.5,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+221,56,2025-08-21 00:00:00.000,92402,2.2,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+222,56,2025-08-21 00:00:00.000,92402,2.2,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+223,56,2025-08-21 00:00:00.000,92402,2.2,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+224,56,2025-08-21 00:00:00.000,92402,2.2,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+225,57,2025-04-24 00:00:00.000,77542,2.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+226,57,2025-04-24 00:00:00.000,77542,2.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+227,57,2025-04-24 00:00:00.000,77542,2.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+228,57,2025-04-24 00:00:00.000,77542,2.7,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+229,58,2025-07-15 00:00:00.000,33135,7.3,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+230,58,2025-07-15 00:00:00.000,33135,7.3,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+231,58,2025-07-15 00:00:00.000,33135,7.3,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+232,58,2025-07-15 00:00:00.000,33135,7.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+233,59,2025-11-10 00:00:00.000,22743,5.0,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+234,59,2025-11-10 00:00:00.000,22743,5.0,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+235,59,2025-11-10 00:00:00.000,22743,5.0,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+236,59,2025-11-10 00:00:00.000,22743,5.0,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+237,60,2025-06-28 00:00:00.000,23009,8.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+238,60,2025-06-28 00:00:00.000,23009,8.7,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+239,60,2025-06-28 00:00:00.000,23009,8.7,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+240,60,2025-06-28 00:00:00.000,23009,8.7,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+241,61,2026-01-14 00:00:00.000,23685,7.4,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+242,61,2026-01-14 00:00:00.000,23685,7.4,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+243,61,2026-01-14 00:00:00.000,23685,7.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+244,61,2026-01-14 00:00:00.000,23685,7.4,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+245,62,2025-11-05 00:00:00.000,35556,5.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+246,62,2025-11-05 00:00:00.000,35556,5.4,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+247,62,2025-11-05 00:00:00.000,35556,5.4,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+248,62,2025-11-05 00:00:00.000,35556,5.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+249,63,2026-01-02 00:00:00.000,23476,5.6,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+250,63,2026-01-02 00:00:00.000,23476,5.6,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+251,63,2026-01-02 00:00:00.000,23476,5.6,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+252,63,2026-01-02 00:00:00.000,23476,5.6,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+253,64,2026-04-17 00:00:00.000,13484,4.9,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+254,64,2026-04-17 00:00:00.000,13484,4.9,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+255,64,2026-04-17 00:00:00.000,13484,4.9,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+256,64,2026-04-17 00:00:00.000,13484,4.9,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+257,65,2026-02-02 00:00:00.000,77579,6.2,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+258,65,2026-02-02 00:00:00.000,77579,6.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,10,Paranoid,Black Sabbath,1970,5.5,8.3
+259,65,2026-02-02 00:00:00.000,77579,6.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+260,65,2026-02-02 00:00:00.000,77579,6.2,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,10,Paranoid,Black Sabbath,1970,5.5,8.3
+261,66,2025-10-24 00:00:00.000,30467,1.9,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+262,66,2025-10-24 00:00:00.000,30467,1.9,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+263,66,2025-10-24 00:00:00.000,30467,1.9,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+264,66,2025-10-24 00:00:00.000,30467,1.9,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+265,67,2026-02-11 00:00:00.000,49135,8.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+266,67,2026-02-11 00:00:00.000,49135,8.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+267,67,2026-02-11 00:00:00.000,49135,8.7,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+268,67,2026-02-11 00:00:00.000,49135,8.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+269,68,2025-06-04 00:00:00.000,40401,2.4,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+270,68,2025-06-04 00:00:00.000,40401,2.4,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+271,68,2025-06-04 00:00:00.000,40401,2.4,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+272,68,2025-06-04 00:00:00.000,40401,2.4,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+273,69,2025-12-08 00:00:00.000,74441,1.0,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+274,69,2025-12-08 00:00:00.000,74441,1.0,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+275,69,2025-12-08 00:00:00.000,74441,1.0,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+276,69,2025-12-08 00:00:00.000,74441,1.0,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+277,70,2026-04-06 00:00:00.000,63823,4.3,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+278,70,2026-04-06 00:00:00.000,63823,4.3,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+279,70,2026-04-06 00:00:00.000,63823,4.3,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+280,70,2026-04-06 00:00:00.000,63823,4.3,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+281,71,2026-01-31 00:00:00.000,45813,7.0,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+282,71,2026-01-31 00:00:00.000,45813,7.0,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+283,71,2026-01-31 00:00:00.000,45813,7.0,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+284,71,2026-01-31 00:00:00.000,45813,7.0,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+285,72,2026-02-04 00:00:00.000,77453,2.5,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+286,72,2026-02-04 00:00:00.000,77453,2.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+287,72,2026-02-04 00:00:00.000,77453,2.5,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+288,72,2026-02-04 00:00:00.000,77453,2.5,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+289,73,2026-02-06 00:00:00.000,10550,6.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+290,73,2026-02-06 00:00:00.000,10550,6.2,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+291,73,2026-02-06 00:00:00.000,10550,6.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+292,73,2026-02-06 00:00:00.000,10550,6.2,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+293,74,2025-11-30 00:00:00.000,95050,2.5,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+294,74,2025-11-30 00:00:00.000,95050,2.5,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+295,74,2025-11-30 00:00:00.000,95050,2.5,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+296,74,2025-11-30 00:00:00.000,95050,2.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+297,75,2026-02-27 00:00:00.000,50332,9.6,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+298,75,2026-02-27 00:00:00.000,50332,9.6,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+299,75,2026-02-27 00:00:00.000,50332,9.6,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+300,75,2026-02-27 00:00:00.000,50332,9.6,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+301,76,2025-05-08 00:00:00.000,31815,6.4,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+302,76,2025-05-08 00:00:00.000,31815,6.4,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+303,76,2025-05-08 00:00:00.000,31815,6.4,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+304,76,2025-05-08 00:00:00.000,31815,6.4,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+305,77,2025-05-27 00:00:00.000,82989,4.1,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+306,77,2025-05-27 00:00:00.000,82989,4.1,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+307,77,2025-05-27 00:00:00.000,82989,4.1,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+308,77,2025-05-27 00:00:00.000,82989,4.1,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+309,78,2025-05-18 00:00:00.000,52926,2.6,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+310,78,2025-05-18 00:00:00.000,52926,2.6,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+311,78,2025-05-18 00:00:00.000,52926,2.6,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+312,78,2025-05-18 00:00:00.000,52926,2.6,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+313,79,2025-07-01 00:00:00.000,93877,4.9,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+314,79,2025-07-01 00:00:00.000,93877,4.9,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,10,Paranoid,Black Sabbath,1970,5.5,8.3
+315,79,2025-07-01 00:00:00.000,93877,4.9,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+316,79,2025-07-01 00:00:00.000,93877,4.9,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,10,Paranoid,Black Sabbath,1970,5.5,8.3
+317,80,2025-12-20 00:00:00.000,73593,8.9,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+318,80,2025-12-20 00:00:00.000,73593,8.9,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+319,80,2025-12-20 00:00:00.000,73593,8.9,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+320,80,2025-12-20 00:00:00.000,73593,8.9,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+321,81,2025-09-29 00:00:00.000,67806,0.8,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+322,81,2025-09-29 00:00:00.000,67806,0.8,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+323,81,2025-09-29 00:00:00.000,67806,0.8,19,Popeye,555-100-1019,popeye@toonmail.com,1,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+324,81,2025-09-29 00:00:00.000,67806,0.8,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+325,82,2025-11-05 00:00:00.000,47249,1.0,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+326,82,2025-11-05 00:00:00.000,47249,1.0,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+327,82,2025-11-05 00:00:00.000,47249,1.0,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+328,82,2025-11-05 00:00:00.000,47249,1.0,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+329,83,2026-01-06 00:00:00.000,10774,4.5,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+330,83,2026-01-06 00:00:00.000,10774,4.5,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+331,83,2026-01-06 00:00:00.000,10774,4.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+332,83,2026-01-06 00:00:00.000,10774,4.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+333,84,2025-08-31 00:00:00.000,96368,6.1,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+334,84,2025-08-31 00:00:00.000,96368,6.1,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+335,84,2025-08-31 00:00:00.000,96368,6.1,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+336,84,2025-08-31 00:00:00.000,96368,6.1,20,Garfield,555-100-1020,garfield@toonmail.com,3,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+337,85,2026-03-02 00:00:00.000,57596,2.9,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+338,85,2026-03-02 00:00:00.000,57596,2.9,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+339,85,2026-03-02 00:00:00.000,57596,2.9,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+340,85,2026-03-02 00:00:00.000,57596,2.9,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+341,86,2026-03-18 00:00:00.000,54070,10.0,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+342,86,2026-03-18 00:00:00.000,54070,10.0,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+343,86,2026-03-18 00:00:00.000,54070,10.0,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+344,86,2026-03-18 00:00:00.000,54070,10.0,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+345,87,2026-04-04 00:00:00.000,82278,1.7,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+346,87,2026-04-04 00:00:00.000,82278,1.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,10,Paranoid,Black Sabbath,1970,5.5,8.3
+347,87,2026-04-04 00:00:00.000,82278,1.7,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+348,87,2026-04-04 00:00:00.000,82278,1.7,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,10,Paranoid,Black Sabbath,1970,5.5,8.3
+349,88,2025-07-31 00:00:00.000,39477,3.8,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+350,88,2025-07-31 00:00:00.000,39477,3.8,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+351,88,2025-07-31 00:00:00.000,39477,3.8,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+352,88,2025-07-31 00:00:00.000,39477,3.8,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+353,89,2025-09-15 00:00:00.000,64820,4.9,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+354,89,2025-09-15 00:00:00.000,64820,4.9,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+355,89,2025-09-15 00:00:00.000,64820,4.9,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+356,89,2025-09-15 00:00:00.000,64820,4.9,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+357,90,2026-02-18 00:00:00.000,24934,2.9,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+358,90,2026-02-18 00:00:00.000,24934,2.9,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+359,90,2026-02-18 00:00:00.000,24934,2.9,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+360,90,2026-02-18 00:00:00.000,24934,2.9,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+361,91,2026-04-03 00:00:00.000,38983,5.1,13,Finn the Human,555-100-1013,finn@toonmail.com,2,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+362,91,2026-04-03 00:00:00.000,38983,5.1,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+363,91,2026-04-03 00:00:00.000,38983,5.1,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+364,91,2026-04-03 00:00:00.000,38983,5.1,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+365,92,2026-02-28 00:00:00.000,89048,9.3,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,1,Electric Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+366,92,2026-02-28 00:00:00.000,89048,9.3,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,4,Drums,10,Paranoid,Black Sabbath,1970,5.5,8.3
+367,92,2026-02-28 00:00:00.000,89048,9.3,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+368,92,2026-02-28 00:00:00.000,89048,9.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,10,Paranoid,Black Sabbath,1970,5.5,8.3
+369,93,2025-09-02 00:00:00.000,43945,4.5,19,Popeye,555-100-1019,popeye@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+370,93,2025-09-02 00:00:00.000,43945,4.5,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+371,93,2025-09-02 00:00:00.000,43945,4.5,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+372,93,2025-09-02 00:00:00.000,43945,4.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+373,94,2025-05-28 00:00:00.000,77571,6.5,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+374,94,2025-05-28 00:00:00.000,77571,6.5,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+375,94,2025-05-28 00:00:00.000,77571,6.5,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+376,94,2025-05-28 00:00:00.000,77571,6.5,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+377,95,2026-01-04 00:00:00.000,74016,2.5,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+378,95,2026-01-04 00:00:00.000,74016,2.5,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+379,95,2026-01-04 00:00:00.000,74016,2.5,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+380,95,2026-01-04 00:00:00.000,74016,2.5,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+381,96,2025-10-17 00:00:00.000,17528,7.6,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+382,96,2025-10-17 00:00:00.000,17528,7.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+383,96,2025-10-17 00:00:00.000,17528,7.6,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+384,96,2025-10-17 00:00:00.000,17528,7.6,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+385,97,2026-03-03 00:00:00.000,85979,7.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+386,97,2026-03-03 00:00:00.000,85979,7.4,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+387,97,2026-03-03 00:00:00.000,85979,7.4,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+388,97,2026-03-03 00:00:00.000,85979,7.4,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+389,98,2025-06-06 00:00:00.000,74498,3.0,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+390,98,2025-06-06 00:00:00.000,74498,3.0,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+391,98,2025-06-06 00:00:00.000,74498,3.0,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+392,98,2025-06-06 00:00:00.000,74498,3.0,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+393,99,2025-06-10 00:00:00.000,92058,6.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+394,99,2025-06-10 00:00:00.000,92058,6.5,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+395,99,2025-06-10 00:00:00.000,92058,6.5,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+396,99,2025-06-10 00:00:00.000,92058,6.5,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+397,100,2025-07-02 00:00:00.000,42600,8.8,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+398,100,2025-07-02 00:00:00.000,42600,8.8,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+399,100,2025-07-02 00:00:00.000,42600,8.8,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+400,100,2025-07-02 00:00:00.000,42600,8.8,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+401,101,2026-01-29 00:00:00.000,75256,9.2,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+402,101,2026-01-29 00:00:00.000,75256,9.2,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+403,101,2026-01-29 00:00:00.000,75256,9.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+404,101,2026-01-29 00:00:00.000,75256,9.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+405,102,2025-08-26 00:00:00.000,21700,3.2,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+406,102,2025-08-26 00:00:00.000,21700,3.2,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+407,102,2025-08-26 00:00:00.000,21700,3.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+408,102,2025-08-26 00:00:00.000,21700,3.2,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+409,103,2026-01-22 00:00:00.000,85716,5.5,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+410,103,2026-01-22 00:00:00.000,85716,5.5,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+411,103,2026-01-22 00:00:00.000,85716,5.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+412,103,2026-01-22 00:00:00.000,85716,5.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+413,104,2025-09-17 00:00:00.000,30919,3.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+414,104,2025-09-17 00:00:00.000,30919,3.7,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+415,104,2025-09-17 00:00:00.000,30919,3.7,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+416,104,2025-09-17 00:00:00.000,30919,3.7,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+417,105,2026-02-02 00:00:00.000,34782,4.4,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+418,105,2026-02-02 00:00:00.000,34782,4.4,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+419,105,2026-02-02 00:00:00.000,34782,4.4,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+420,105,2026-02-02 00:00:00.000,34782,4.4,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+421,106,2026-02-20 00:00:00.000,50720,0.2,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+422,106,2026-02-20 00:00:00.000,50720,0.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+423,106,2026-02-20 00:00:00.000,50720,0.2,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+424,106,2026-02-20 00:00:00.000,50720,0.2,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+425,107,2025-04-23 00:00:00.000,17424,7.0,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+426,107,2025-04-23 00:00:00.000,17424,7.0,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+427,107,2025-04-23 00:00:00.000,17424,7.0,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+428,107,2025-04-23 00:00:00.000,17424,7.0,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+429,108,2025-08-04 00:00:00.000,30140,4.4,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+430,108,2025-08-04 00:00:00.000,30140,4.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+431,108,2025-08-04 00:00:00.000,30140,4.4,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+432,108,2025-08-04 00:00:00.000,30140,4.4,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+433,109,2026-03-06 00:00:00.000,91091,9.2,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+434,109,2026-03-06 00:00:00.000,91091,9.2,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,10,Paranoid,Black Sabbath,1970,5.5,8.3
+435,109,2026-03-06 00:00:00.000,91091,9.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+436,109,2026-03-06 00:00:00.000,91091,9.2,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,10,Paranoid,Black Sabbath,1970,5.5,8.3
+437,110,2025-09-24 00:00:00.000,47389,6.3,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+438,110,2025-09-24 00:00:00.000,47389,6.3,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+439,110,2025-09-24 00:00:00.000,47389,6.3,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+440,110,2025-09-24 00:00:00.000,47389,6.3,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+441,111,2025-12-10 00:00:00.000,76126,8.7,13,Finn the Human,555-100-1013,finn@toonmail.com,2,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+442,111,2025-12-10 00:00:00.000,76126,8.7,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+443,111,2025-12-10 00:00:00.000,76126,8.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+444,111,2025-12-10 00:00:00.000,76126,8.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+445,112,2025-06-05 00:00:00.000,88407,9.4,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+446,112,2025-06-05 00:00:00.000,88407,9.4,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+447,112,2025-06-05 00:00:00.000,88407,9.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+448,112,2025-06-05 00:00:00.000,88407,9.4,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+449,113,2025-05-07 00:00:00.000,34409,2.2,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+450,113,2025-05-07 00:00:00.000,34409,2.2,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+451,113,2025-05-07 00:00:00.000,34409,2.2,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+452,113,2025-05-07 00:00:00.000,34409,2.2,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+453,114,2025-11-14 00:00:00.000,50086,8.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+454,114,2025-11-14 00:00:00.000,50086,8.6,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+455,114,2025-11-14 00:00:00.000,50086,8.6,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+456,114,2025-11-14 00:00:00.000,50086,8.6,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+457,115,2025-06-01 00:00:00.000,36930,7.6,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+458,115,2025-06-01 00:00:00.000,36930,7.6,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+459,115,2025-06-01 00:00:00.000,36930,7.6,19,Popeye,555-100-1019,popeye@toonmail.com,1,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+460,115,2025-06-01 00:00:00.000,36930,7.6,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+461,116,2026-01-12 00:00:00.000,20725,7.0,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+462,116,2026-01-12 00:00:00.000,20725,7.0,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+463,116,2026-01-12 00:00:00.000,20725,7.0,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+464,116,2026-01-12 00:00:00.000,20725,7.0,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+465,117,2025-09-23 00:00:00.000,46630,2.8,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+466,117,2025-09-23 00:00:00.000,46630,2.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+467,117,2025-09-23 00:00:00.000,46630,2.8,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+468,117,2025-09-23 00:00:00.000,46630,2.8,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+469,118,2025-06-26 00:00:00.000,47348,2.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+470,118,2025-06-26 00:00:00.000,47348,2.3,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+471,118,2025-06-26 00:00:00.000,47348,2.3,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+472,118,2025-06-26 00:00:00.000,47348,2.3,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+473,119,2026-04-08 00:00:00.000,60729,5.2,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+474,119,2026-04-08 00:00:00.000,60729,5.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+475,119,2026-04-08 00:00:00.000,60729,5.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+476,119,2026-04-08 00:00:00.000,60729,5.2,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+477,120,2026-02-24 00:00:00.000,64585,8.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+478,120,2026-02-24 00:00:00.000,64585,8.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+479,120,2026-02-24 00:00:00.000,64585,8.5,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+480,120,2026-02-24 00:00:00.000,64585,8.5,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+481,121,2025-05-01 00:00:00.000,26103,2.7,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+482,121,2025-05-01 00:00:00.000,26103,2.7,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+483,121,2025-05-01 00:00:00.000,26103,2.7,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+484,121,2025-05-01 00:00:00.000,26103,2.7,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+485,122,2025-08-06 00:00:00.000,30808,0.7,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+486,122,2025-08-06 00:00:00.000,30808,0.7,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+487,122,2025-08-06 00:00:00.000,30808,0.7,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+488,122,2025-08-06 00:00:00.000,30808,0.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+489,123,2025-05-12 00:00:00.000,16600,1.7,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+490,123,2025-05-12 00:00:00.000,16600,1.7,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+491,123,2025-05-12 00:00:00.000,16600,1.7,19,Popeye,555-100-1019,popeye@toonmail.com,1,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+492,123,2025-05-12 00:00:00.000,16600,1.7,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+493,124,2025-10-16 00:00:00.000,95492,7.2,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+494,124,2025-10-16 00:00:00.000,95492,7.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+495,124,2025-10-16 00:00:00.000,95492,7.2,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+496,124,2025-10-16 00:00:00.000,95492,7.2,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+497,125,2025-11-20 00:00:00.000,14137,3.0,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+498,125,2025-11-20 00:00:00.000,14137,3.0,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+499,125,2025-11-20 00:00:00.000,14137,3.0,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+500,125,2025-11-20 00:00:00.000,14137,3.0,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+501,126,2025-04-20 00:00:00.000,99281,7.9,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+502,126,2025-04-20 00:00:00.000,99281,7.9,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+503,126,2025-04-20 00:00:00.000,99281,7.9,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+504,126,2025-04-20 00:00:00.000,99281,7.9,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+505,127,2025-06-08 00:00:00.000,20569,3.9,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+506,127,2025-06-08 00:00:00.000,20569,3.9,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+507,127,2025-06-08 00:00:00.000,20569,3.9,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+508,127,2025-06-08 00:00:00.000,20569,3.9,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+509,128,2026-04-17 00:00:00.000,8978,10.0,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+510,128,2026-04-17 00:00:00.000,8978,10.0,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+511,128,2026-04-17 00:00:00.000,8978,10.0,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+512,128,2026-04-17 00:00:00.000,8978,10.0,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+513,129,2025-07-27 00:00:00.000,90277,5.5,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+514,129,2025-07-27 00:00:00.000,90277,5.5,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+515,129,2025-07-27 00:00:00.000,90277,5.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+516,129,2025-07-27 00:00:00.000,90277,5.5,20,Garfield,555-100-1020,garfield@toonmail.com,3,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+517,130,2026-03-22 00:00:00.000,39157,2.3,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+518,130,2026-03-22 00:00:00.000,39157,2.3,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,19,We Will Rock You,Queen,1977,3.0,9.0
+519,130,2026-03-22 00:00:00.000,39157,2.3,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+520,130,2026-03-22 00:00:00.000,39157,2.3,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,19,We Will Rock You,Queen,1977,3.0,9.0
+521,131,2025-12-16 00:00:00.000,23692,1.8,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+522,131,2025-12-16 00:00:00.000,23692,1.8,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+523,131,2025-12-16 00:00:00.000,23692,1.8,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+524,131,2025-12-16 00:00:00.000,23692,1.8,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+525,132,2025-11-30 00:00:00.000,46216,3.5,19,Popeye,555-100-1019,popeye@toonmail.com,1,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+526,132,2025-11-30 00:00:00.000,46216,3.5,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+527,132,2025-11-30 00:00:00.000,46216,3.5,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+528,132,2025-11-30 00:00:00.000,46216,3.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+529,133,2026-04-06 00:00:00.000,44633,4.8,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+530,133,2026-04-06 00:00:00.000,44633,4.8,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+531,133,2026-04-06 00:00:00.000,44633,4.8,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+532,133,2026-04-06 00:00:00.000,44633,4.8,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+533,134,2026-01-12 00:00:00.000,71346,8.5,19,Popeye,555-100-1019,popeye@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+534,134,2026-01-12 00:00:00.000,71346,8.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+535,134,2026-01-12 00:00:00.000,71346,8.5,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+536,134,2026-01-12 00:00:00.000,71346,8.5,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+537,135,2025-12-13 00:00:00.000,16839,1.4,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+538,135,2025-12-13 00:00:00.000,16839,1.4,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+539,135,2025-12-13 00:00:00.000,16839,1.4,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+540,135,2025-12-13 00:00:00.000,16839,1.4,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+541,136,2025-08-14 00:00:00.000,70509,5.2,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+542,136,2025-08-14 00:00:00.000,70509,5.2,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+543,136,2025-08-14 00:00:00.000,70509,5.2,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+544,136,2025-08-14 00:00:00.000,70509,5.2,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+545,137,2025-06-18 00:00:00.000,28375,6.4,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+546,137,2025-06-18 00:00:00.000,28375,6.4,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+547,137,2025-06-18 00:00:00.000,28375,6.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+548,137,2025-06-18 00:00:00.000,28375,6.4,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+549,138,2026-02-12 00:00:00.000,22808,1.3,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+550,138,2026-02-12 00:00:00.000,22808,1.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+551,138,2026-02-12 00:00:00.000,22808,1.3,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+552,138,2026-02-12 00:00:00.000,22808,1.3,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+553,139,2025-07-29 00:00:00.000,46221,0.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+554,139,2025-07-29 00:00:00.000,46221,0.5,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+555,139,2025-07-29 00:00:00.000,46221,0.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+556,139,2025-07-29 00:00:00.000,46221,0.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+557,140,2026-02-10 00:00:00.000,48882,1.8,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+558,140,2026-02-10 00:00:00.000,48882,1.8,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+559,140,2026-02-10 00:00:00.000,48882,1.8,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+560,140,2026-02-10 00:00:00.000,48882,1.8,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+561,141,2025-09-21 00:00:00.000,74454,8.8,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+562,141,2025-09-21 00:00:00.000,74454,8.8,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+563,141,2025-09-21 00:00:00.000,74454,8.8,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+564,141,2025-09-21 00:00:00.000,74454,8.8,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+565,142,2026-04-02 00:00:00.000,32601,4.0,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+566,142,2026-04-02 00:00:00.000,32601,4.0,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+567,142,2026-04-02 00:00:00.000,32601,4.0,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+568,142,2026-04-02 00:00:00.000,32601,4.0,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+569,143,2026-03-20 00:00:00.000,7256,3.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+570,143,2026-03-20 00:00:00.000,7256,3.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+571,143,2026-03-20 00:00:00.000,7256,3.7,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,2,Bass Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+572,143,2026-03-20 00:00:00.000,7256,3.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+573,144,2025-08-07 00:00:00.000,53083,9.8,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+574,144,2025-08-07 00:00:00.000,53083,9.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+575,144,2025-08-07 00:00:00.000,53083,9.8,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+576,144,2025-08-07 00:00:00.000,53083,9.8,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+577,145,2026-02-25 00:00:00.000,16484,9.3,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+578,145,2026-02-25 00:00:00.000,16484,9.3,11,Dexter,555-100-1011,dexter@toonmail.com,1,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+579,145,2026-02-25 00:00:00.000,16484,9.3,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+580,145,2026-02-25 00:00:00.000,16484,9.3,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+581,146,2025-11-09 00:00:00.000,62195,7.3,19,Popeye,555-100-1019,popeye@toonmail.com,1,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+582,146,2025-11-09 00:00:00.000,62195,7.3,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+583,146,2025-11-09 00:00:00.000,62195,7.3,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+584,146,2025-11-09 00:00:00.000,62195,7.3,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+585,147,2025-08-05 00:00:00.000,26583,4.5,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+586,147,2025-08-05 00:00:00.000,26583,4.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+587,147,2025-08-05 00:00:00.000,26583,4.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+588,147,2025-08-05 00:00:00.000,26583,4.5,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+589,148,2025-05-07 00:00:00.000,10311,1.1,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+590,148,2025-05-07 00:00:00.000,10311,1.1,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+591,148,2025-05-07 00:00:00.000,10311,1.1,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+592,148,2025-05-07 00:00:00.000,10311,1.1,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+593,149,2026-02-11 00:00:00.000,75096,5.2,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+594,149,2026-02-11 00:00:00.000,75096,5.2,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,19,We Will Rock You,Queen,1977,3.0,9.0
+595,149,2026-02-11 00:00:00.000,75096,5.2,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+596,149,2026-02-11 00:00:00.000,75096,5.2,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,19,We Will Rock You,Queen,1977,3.0,9.0
+597,150,2026-02-17 00:00:00.000,37559,1.9,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+598,150,2026-02-17 00:00:00.000,37559,1.9,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,19,We Will Rock You,Queen,1977,3.0,9.0
+599,150,2026-02-17 00:00:00.000,37559,1.9,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+600,150,2026-02-17 00:00:00.000,37559,1.9,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,19,We Will Rock You,Queen,1977,3.0,9.0
+601,151,2025-10-13 00:00:00.000,94311,5.6,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+602,151,2025-10-13 00:00:00.000,94311,5.6,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+603,151,2025-10-13 00:00:00.000,94311,5.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+604,151,2025-10-13 00:00:00.000,94311,5.6,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+605,152,2026-02-05 00:00:00.000,41705,7.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,1,Electric Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+606,152,2026-02-05 00:00:00.000,41705,7.7,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+607,152,2026-02-05 00:00:00.000,41705,7.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+608,152,2026-02-05 00:00:00.000,41705,7.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,2,Bohemian Rhapsody,Queen,1975,9.2,9.8
+609,153,2026-04-14 00:00:00.000,58885,3.6,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+610,153,2026-04-14 00:00:00.000,58885,3.6,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+611,153,2026-04-14 00:00:00.000,58885,3.6,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,2,Bass Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+612,153,2026-04-14 00:00:00.000,58885,3.6,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+613,154,2025-12-01 00:00:00.000,69546,5.5,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+614,154,2025-12-01 00:00:00.000,69546,5.5,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,19,We Will Rock You,Queen,1977,3.0,9.0
+615,154,2025-12-01 00:00:00.000,69546,5.5,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+616,154,2025-12-01 00:00:00.000,69546,5.5,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,19,We Will Rock You,Queen,1977,3.0,9.0
+617,155,2026-04-11 00:00:00.000,58739,2.7,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+618,155,2026-04-11 00:00:00.000,58739,2.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+619,155,2026-04-11 00:00:00.000,58739,2.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+620,155,2026-04-11 00:00:00.000,58739,2.7,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+621,156,2025-06-10 00:00:00.000,27495,8.0,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,1,Electric Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+622,156,2025-06-10 00:00:00.000,27495,8.0,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+623,156,2025-06-10 00:00:00.000,27495,8.0,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+624,156,2025-06-10 00:00:00.000,27495,8.0,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,18,Livin' on a Prayer,Bon Jovi,1986,5.5,9.3
+625,157,2025-10-14 00:00:00.000,26239,3.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+626,157,2025-10-14 00:00:00.000,26239,3.7,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+627,157,2025-10-14 00:00:00.000,26239,3.7,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+628,157,2025-10-14 00:00:00.000,26239,3.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+629,158,2025-12-24 00:00:00.000,81996,8.7,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+630,158,2025-12-24 00:00:00.000,81996,8.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+631,158,2025-12-24 00:00:00.000,81996,8.7,13,Finn the Human,555-100-1013,finn@toonmail.com,2,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+632,158,2025-12-24 00:00:00.000,81996,8.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+633,159,2025-12-20 00:00:00.000,86484,3.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+634,159,2025-12-20 00:00:00.000,86484,3.3,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+635,159,2025-12-20 00:00:00.000,86484,3.3,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+636,159,2025-12-20 00:00:00.000,86484,3.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,3,Vocals,1,Stairway to Heaven,Led Zeppelin,1971,8.5,9.0
+637,160,2026-03-02 00:00:00.000,5916,0.5,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+638,160,2026-03-02 00:00:00.000,5916,0.5,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,19,We Will Rock You,Queen,1977,3.0,9.0
+639,160,2026-03-02 00:00:00.000,5916,0.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,19,We Will Rock You,Queen,1977,3.0,9.0
+640,160,2026-03-02 00:00:00.000,5916,0.5,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,19,We Will Rock You,Queen,1977,3.0,9.0
+641,161,2025-05-09 00:00:00.000,89103,4.0,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+642,161,2025-05-09 00:00:00.000,89103,4.0,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+643,161,2025-05-09 00:00:00.000,89103,4.0,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+644,161,2025-05-09 00:00:00.000,89103,4.0,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,7,Free Bird,Lynyrd Skynyrd,1973,8.8,9.0
+645,162,2025-04-20 00:00:00.000,30428,9.8,19,Popeye,555-100-1019,popeye@toonmail.com,1,1,Electric Guitar,13,Barracuda,Heart,1977,7.2,8.4
+646,162,2025-04-20 00:00:00.000,30428,9.8,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,13,Barracuda,Heart,1977,7.2,8.4
+647,162,2025-04-20 00:00:00.000,30428,9.8,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,13,Barracuda,Heart,1977,7.2,8.4
+648,162,2025-04-20 00:00:00.000,30428,9.8,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,3,Vocals,13,Barracuda,Heart,1977,7.2,8.4
+649,163,2025-09-28 00:00:00.000,13834,7.2,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+650,163,2025-09-28 00:00:00.000,13834,7.2,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+651,163,2025-09-28 00:00:00.000,13834,7.2,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+652,163,2025-09-28 00:00:00.000,13834,7.2,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+653,164,2026-03-08 00:00:00.000,98443,0.3,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+654,164,2026-03-08 00:00:00.000,98443,0.3,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+655,164,2026-03-08 00:00:00.000,98443,0.3,19,Popeye,555-100-1019,popeye@toonmail.com,1,2,Bass Guitar,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+656,164,2026-03-08 00:00:00.000,98443,0.3,13,Finn the Human,555-100-1013,finn@toonmail.com,2,3,Vocals,9,Born to Run,Bruce Springsteen,1975,6.8,8.7
+657,165,2026-03-04 00:00:00.000,41867,10.0,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+658,165,2026-03-04 00:00:00.000,41867,10.0,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+659,165,2026-03-04 00:00:00.000,41867,10.0,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,2,Bass Guitar,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+660,165,2026-03-04 00:00:00.000,41867,10.0,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,6,Smoke on the Water,Deep Purple,1972,4.5,7.5
+661,166,2025-08-04 00:00:00.000,72622,9.8,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+662,166,2025-08-04 00:00:00.000,72622,9.8,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+663,166,2025-08-04 00:00:00.000,72622,9.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+664,166,2025-08-04 00:00:00.000,72622,9.8,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+665,167,2026-01-20 00:00:00.000,40640,1.7,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+666,167,2026-01-20 00:00:00.000,40640,1.7,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+667,167,2026-01-20 00:00:00.000,40640,1.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+668,167,2026-01-20 00:00:00.000,40640,1.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+669,168,2025-06-14 00:00:00.000,99668,4.4,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+670,168,2025-06-14 00:00:00.000,99668,4.4,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+671,168,2025-06-14 00:00:00.000,99668,4.4,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+672,168,2025-06-14 00:00:00.000,99668,4.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+673,169,2025-08-05 00:00:00.000,48447,3.7,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+674,169,2025-08-05 00:00:00.000,48447,3.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+675,169,2025-08-05 00:00:00.000,48447,3.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+676,169,2025-08-05 00:00:00.000,48447,3.7,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+677,170,2025-06-23 00:00:00.000,75534,9.4,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+678,170,2025-06-23 00:00:00.000,75534,9.4,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+679,170,2025-06-23 00:00:00.000,75534,9.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+680,170,2025-06-23 00:00:00.000,75534,9.4,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+681,171,2026-01-05 00:00:00.000,69889,2.7,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+682,171,2026-01-05 00:00:00.000,69889,2.7,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+683,171,2026-01-05 00:00:00.000,69889,2.7,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+684,171,2026-01-05 00:00:00.000,69889,2.7,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+685,172,2026-03-09 00:00:00.000,81716,1.7,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,1,Electric Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+686,172,2026-03-09 00:00:00.000,81716,1.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,5,Back in Black,AC/DC,1980,6.0,8.8
+687,172,2026-03-09 00:00:00.000,81716,1.7,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+688,172,2026-03-09 00:00:00.000,81716,1.7,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,5,Back in Black,AC/DC,1980,6.0,8.8
+689,173,2025-09-16 00:00:00.000,99449,5.2,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+690,173,2025-09-16 00:00:00.000,99449,5.2,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+691,173,2025-09-16 00:00:00.000,99449,5.2,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+692,173,2025-09-16 00:00:00.000,99449,5.2,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+693,174,2025-06-03 00:00:00.000,9090,7.6,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+694,174,2025-06-03 00:00:00.000,9090,7.6,19,Popeye,555-100-1019,popeye@toonmail.com,1,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+695,174,2025-06-03 00:00:00.000,9090,7.6,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+696,174,2025-06-03 00:00:00.000,9090,7.6,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+697,175,2025-10-27 00:00:00.000,51148,6.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+698,175,2025-10-27 00:00:00.000,51148,6.3,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,5,Back in Black,AC/DC,1980,6.0,8.8
+699,175,2025-10-27 00:00:00.000,51148,6.3,5,SpongeBob SquarePants,555-100-1005,spongebob@toonmail.com,1,2,Bass Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+700,175,2025-10-27 00:00:00.000,51148,6.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,3,Vocals,5,Back in Black,AC/DC,1980,6.0,8.8
+701,176,2025-07-08 00:00:00.000,65282,7.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+702,176,2025-07-08 00:00:00.000,65282,7.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+703,176,2025-07-08 00:00:00.000,65282,7.8,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+704,176,2025-07-08 00:00:00.000,65282,7.8,19,Popeye,555-100-1019,popeye@toonmail.com,1,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+705,177,2025-07-14 00:00:00.000,97649,3.1,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+706,177,2025-07-14 00:00:00.000,97649,3.1,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+707,177,2025-07-14 00:00:00.000,97649,3.1,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+708,177,2025-07-14 00:00:00.000,97649,3.1,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+709,178,2025-08-15 00:00:00.000,75849,8.6,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+710,178,2025-08-15 00:00:00.000,75849,8.6,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,10,Paranoid,Black Sabbath,1970,5.5,8.3
+711,178,2025-08-15 00:00:00.000,75849,8.6,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+712,178,2025-08-15 00:00:00.000,75849,8.6,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,10,Paranoid,Black Sabbath,1970,5.5,8.3
+713,179,2025-06-22 00:00:00.000,63634,8.4,20,Garfield,555-100-1020,garfield@toonmail.com,3,1,Electric Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+714,179,2025-06-22 00:00:00.000,63634,8.4,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,4,Drums,11,Dream On,Aerosmith,1973,7.0,8.6
+715,179,2025-06-22 00:00:00.000,63634,8.4,19,Popeye,555-100-1019,popeye@toonmail.com,1,2,Bass Guitar,11,Dream On,Aerosmith,1973,7.0,8.6
+716,179,2025-06-22 00:00:00.000,63634,8.4,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,11,Dream On,Aerosmith,1973,7.0,8.6
+717,180,2025-05-12 00:00:00.000,76600,8.2,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+718,180,2025-05-12 00:00:00.000,76600,8.2,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+719,180,2025-05-12 00:00:00.000,76600,8.2,20,Garfield,555-100-1020,garfield@toonmail.com,3,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+720,180,2025-05-12 00:00:00.000,76600,8.2,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+721,181,2025-05-23 00:00:00.000,63235,6.9,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+722,181,2025-05-23 00:00:00.000,63235,6.9,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+723,181,2025-05-23 00:00:00.000,63235,6.9,11,Dexter,555-100-1011,dexter@toonmail.com,1,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+724,181,2025-05-23 00:00:00.000,63235,6.9,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+725,182,2026-02-25 00:00:00.000,53870,7.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+726,182,2026-02-25 00:00:00.000,53870,7.2,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+727,182,2026-02-25 00:00:00.000,53870,7.2,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+728,182,2026-02-25 00:00:00.000,53870,7.2,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+729,183,2025-08-10 00:00:00.000,90162,7.5,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+730,183,2025-08-10 00:00:00.000,90162,7.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,20,Highway to Hell,AC/DC,1979,5.8,8.9
+731,183,2025-08-10 00:00:00.000,90162,7.5,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,2,Bass Guitar,20,Highway to Hell,AC/DC,1979,5.8,8.9
+732,183,2025-08-10 00:00:00.000,90162,7.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,20,Highway to Hell,AC/DC,1979,5.8,8.9
+733,184,2025-12-20 00:00:00.000,38929,5.8,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,1,Electric Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+734,184,2025-12-20 00:00:00.000,38929,5.8,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,5,Back in Black,AC/DC,1980,6.0,8.8
+735,184,2025-12-20 00:00:00.000,38929,5.8,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,2,Bass Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+736,184,2025-12-20 00:00:00.000,38929,5.8,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,3,Vocals,5,Back in Black,AC/DC,1980,6.0,8.8
+737,185,2025-05-15 00:00:00.000,35704,8.8,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+738,185,2025-05-15 00:00:00.000,35704,8.8,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+739,185,2025-05-15 00:00:00.000,35704,8.8,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+740,185,2025-05-15 00:00:00.000,35704,8.8,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+741,186,2026-04-05 00:00:00.000,63843,5.2,11,Dexter,555-100-1011,dexter@toonmail.com,1,1,Electric Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+742,186,2026-04-05 00:00:00.000,63843,5.2,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+743,186,2026-04-05 00:00:00.000,63843,5.2,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+744,186,2026-04-05 00:00:00.000,63843,5.2,12,Johnny Bravo,555-100-1012,johnny.bravo@toonmail.com,3,3,Vocals,4,Sweet Child O Mine,Guns N Roses,1987,7.5,9.2
+745,187,2025-06-27 00:00:00.000,38888,1.3,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,1,Electric Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+746,187,2025-06-27 00:00:00.000,38888,1.3,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,12,Thunderstruck,AC/DC,1990,8.0,9.5
+747,187,2025-06-27 00:00:00.000,38888,1.3,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,12,Thunderstruck,AC/DC,1990,8.0,9.5
+748,187,2025-06-27 00:00:00.000,38888,1.3,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,3,Vocals,12,Thunderstruck,AC/DC,1990,8.0,9.5
+749,188,2025-06-28 00:00:00.000,94793,6.6,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+750,188,2025-06-28 00:00:00.000,94793,6.6,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+751,188,2025-06-28 00:00:00.000,94793,6.6,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+752,188,2025-06-28 00:00:00.000,94793,6.6,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+753,189,2025-09-01 00:00:00.000,28008,9.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+754,189,2025-09-01 00:00:00.000,28008,9.7,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+755,189,2025-09-01 00:00:00.000,28008,9.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+756,189,2025-09-01 00:00:00.000,28008,9.7,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+757,190,2026-02-21 00:00:00.000,46134,4.1,17,Fred Flintstone,555-100-1017,fred.flintstone@toonmail.com,4,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+758,190,2026-02-21 00:00:00.000,46134,4.1,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+759,190,2026-02-21 00:00:00.000,46134,4.1,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+760,190,2026-02-21 00:00:00.000,46134,4.1,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+761,191,2025-06-10 00:00:00.000,8464,3.8,13,Finn the Human,555-100-1013,finn@toonmail.com,2,1,Electric Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+762,191,2025-06-10 00:00:00.000,8464,3.8,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,4,Drums,17,Don't Stop Believin',Journey,1981,5.0,9.5
+763,191,2025-06-10 00:00:00.000,8464,3.8,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,2,Bass Guitar,17,Don't Stop Believin',Journey,1981,5.0,9.5
+764,191,2025-06-10 00:00:00.000,8464,3.8,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,3,Vocals,17,Don't Stop Believin',Journey,1981,5.0,9.5
+765,192,2025-09-16 00:00:00.000,14392,1.0,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,1,Electric Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+766,192,2025-09-16 00:00:00.000,14392,1.0,20,Garfield,555-100-1020,garfield@toonmail.com,3,4,Drums,3,Hotel California,Eagles,1977,7.8,8.5
+767,192,2025-09-16 00:00:00.000,14392,1.0,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,2,Bass Guitar,3,Hotel California,Eagles,1977,7.8,8.5
+768,192,2025-09-16 00:00:00.000,14392,1.0,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,3,Hotel California,Eagles,1977,7.8,8.5
+769,193,2026-04-11 00:00:00.000,25969,3.1,16,Homer Simpson,555-100-1016,homer.simpson@toonmail.com,3,1,Electric Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+770,193,2026-04-11 00:00:00.000,25969,3.1,4,Donald Duck,555-100-1004,donald.duck@toonmail.com,4,4,Drums,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+771,193,2026-04-11 00:00:00.000,25969,3.1,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,2,Bass Guitar,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+772,193,2026-04-11 00:00:00.000,25969,3.1,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,3,Vocals,15,Crazy Train,Ozzy Osbourne,1980,8.3,9.1
+773,194,2025-08-20 00:00:00.000,57971,1.3,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+774,194,2025-08-20 00:00:00.000,57971,1.3,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+775,194,2025-08-20 00:00:00.000,57971,1.3,10,Jerry Mouse,555-100-1010,jerry.mouse@toonmail.com,4,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+776,194,2025-08-20 00:00:00.000,57971,1.3,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+777,195,2025-08-02 00:00:00.000,71659,6.5,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,1,Electric Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+778,195,2025-08-02 00:00:00.000,71659,6.5,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+779,195,2025-08-02 00:00:00.000,71659,6.5,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,2,Bass Guitar,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+780,195,2025-08-02 00:00:00.000,71659,6.5,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,16,Kashmir,Led Zeppelin,1975,7.0,8.8
+781,196,2025-05-15 00:00:00.000,33725,9.6,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,1,Electric Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+782,196,2025-05-15 00:00:00.000,33725,9.6,14,Jake the Dog,555-100-1014,jake@toonmail.com,4,4,Drums,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+783,196,2025-05-15 00:00:00.000,33725,9.6,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+784,196,2025-05-15 00:00:00.000,33725,9.6,8,Shaggy Rogers,555-100-1008,shaggy.rogers@toonmail.com,2,3,Vocals,14,Won't Get Fooled Again,The Who,1971,7.8,8.9
+785,197,2025-10-12 00:00:00.000,53874,9.4,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,1,Electric Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+786,197,2025-10-12 00:00:00.000,53874,9.4,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,10,Paranoid,Black Sabbath,1970,5.5,8.3
+787,197,2025-10-12 00:00:00.000,53874,9.4,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,10,Paranoid,Black Sabbath,1970,5.5,8.3
+788,197,2025-10-12 00:00:00.000,53874,9.4,11,Dexter,555-100-1011,dexter@toonmail.com,1,3,Vocals,10,Paranoid,Black Sabbath,1970,5.5,8.3
+789,198,2025-10-27 00:00:00.000,99345,2.6,15,Bart Simpson,555-100-1015,bart.simpson@toonmail.com,1,1,Electric Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+790,198,2025-10-27 00:00:00.000,99345,2.6,2,Daffy Duck,555-100-1002,daffy.duck@toonmail.com,2,4,Drums,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+791,198,2025-10-27 00:00:00.000,99345,2.6,9,Tom Cat,555-100-1009,tom.cat@toonmail.com,1,2,Bass Guitar,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+792,198,2025-10-27 00:00:00.000,99345,2.6,7,Scooby Doo,555-100-1007,scooby.doo@toonmail.com,3,3,Vocals,8,Paint It Black,The Rolling Stones,1966,6.5,8.0
+793,199,2026-03-11 00:00:00.000,69432,7.5,19,Popeye,555-100-1019,popeye@toonmail.com,1,1,Electric Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+794,199,2026-03-11 00:00:00.000,69432,7.5,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,4,Drums,5,Back in Black,AC/DC,1980,6.0,8.8
+795,199,2026-03-11 00:00:00.000,69432,7.5,1,Bugs Bunny,555-100-1001,bugs.bunny@toonmail.com,1,2,Bass Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+796,199,2026-03-11 00:00:00.000,69432,7.5,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,3,Vocals,5,Back in Black,AC/DC,1980,6.0,8.8
+797,200,2025-12-15 00:00:00.000,78075,3.3,3,Mickey Mouse,555-100-1003,mickey.mouse@toonmail.com,3,1,Electric Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+798,200,2025-12-15 00:00:00.000,78075,3.3,13,Finn the Human,555-100-1013,finn@toonmail.com,2,4,Drums,5,Back in Black,AC/DC,1980,6.0,8.8
+799,200,2025-12-15 00:00:00.000,78075,3.3,6,Patrick Star,555-100-1006,patrick.star@toonmail.com,4,2,Bass Guitar,5,Back in Black,AC/DC,1980,6.0,8.8
+800,200,2025-12-15 00:00:00.000,78075,3.3,18,George Jetson,555-100-1018,george.jetson@toonmail.com,2,3,Vocals,5,Back in Black,AC/DC,1980,6.0,8.8
