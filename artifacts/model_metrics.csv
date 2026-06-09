@@ -1,0 +1,4 @@
+model,train_mae,train_rmse,train_r2,test_mae,test_rmse,test_r2
+LinearRegression,20612.27,24634.09,0.1312,25318.96,29003.8,-0.0791
+RandomForestRegressor,9099.83,11279.9,0.8178,26272.13,30171.71,-0.1678
+KNeighborsRegressor,20051.68,24101.33,0.1684,26460.71,30266.63,-0.1752

@@ -1,0 +1,32 @@
+{
+  "min_score": 5916.0,
+  "max_score": 99668.0,
+  "mean_score": 52139.715,
+  "quartiles": {
+    "q1": 28548.25,
+    "q2": 50526.0,
+    "q3": 74688.75
+  },
+  "bands": [
+    {
+      "name": "Low",
+      "max_inclusive": 28548.25,
+      "label": "Needs rehearsal"
+    },
+    {
+      "name": "Moderate",
+      "max_inclusive": 50526.0,
+      "label": "Solid performance"
+    },
+    {
+      "name": "Strong",
+      "max_inclusive": 74688.75,
+      "label": "Audience-ready"
+    },
+    {
+      "name": "Elite",
+      "max_inclusive": null,
+      "label": "Headline performance"
+    }
+  ]
+}

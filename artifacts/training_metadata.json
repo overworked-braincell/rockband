@@ -1,0 +1,35 @@
+{
+  "target": "SCORE",
+  "feature_columns": [
+    "SONG_NAME",
+    "ARTIST",
+    "RELEASE_YEAR",
+    "SONG_DIFFICULTY_RATING",
+    "SONG_FUN_RATING",
+    "TEAM_SIZE",
+    "INSTRUMENTS_COVERED",
+    "PREF_MATCH_RATIO",
+    "MONTH",
+    "DAY_OF_WEEK"
+  ],
+  "categorical_columns": [
+    "SONG_NAME",
+    "ARTIST"
+  ],
+  "numeric_columns": [
+    "RELEASE_YEAR",
+    "SONG_DIFFICULTY_RATING",
+    "SONG_FUN_RATING",
+    "TEAM_SIZE",
+    "INSTRUMENTS_COVERED",
+    "PREF_MATCH_RATIO",
+    "MONTH",
+    "DAY_OF_WEEK"
+  ],
+  "best_model": "LinearRegression",
+  "data_path": "joined_dataset.csv",
+  "test_size": 0.2,
+  "seed": 42,
+  "train_rows": 160,
+  "test_rows": 40
+}
