@@ -45,13 +45,23 @@ CHALLENGE_DEFAULTS = {
         "answer": "Dave Walton",
     },
     "p5_prepare": {
-        "question": "What is the convience store downstaris called?",
+        "question": "What is the convenience store downstairs refer as?",
         "answer": "Stop Gap",
     },
     "p6_modeling": {
         "question": "Who is the Cat Financial EA this challenge is based off of?",
         "answer": "Ben Hocker",
     },
+}
+
+CHALLENGE_PENALTIES = {
+    "p1": 5.0,
+    "p2_stats": 3.0,
+    "p2_outliers": 0.0,
+    "p3_drop": 2.0,
+    "p4_shape": 1.0,
+    "p5_prepare": 0.0,
+    "p6_modeling": 0.5,
 }
 
 st.markdown(
@@ -249,6 +259,7 @@ def evaluate_holdout(
     model_names: list[str],
     test_size: float,
     seed: int,
+    include_baseline: bool = False,
 ) -> tuple[pd.DataFrame, dict[str, Pipeline], dict[str, pd.DataFrame | pd.Series]]:
     feature_cols, cat_cols, num_cols = get_feature_columns(perf)
     x = perf[feature_cols]
@@ -259,22 +270,23 @@ def evaluate_holdout(
     rows: list[dict[str, float | str]] = []
     trained_models: dict[str, Pipeline] = {}
 
-    naive_pred_train = np.full(shape=len(y_train), fill_value=float(y_train.mean()))
-    naive_pred_test = np.full(shape=len(y_test), fill_value=float(y_train.mean()))
-    naive_train = regression_metrics(y_train, naive_pred_train)
-    naive_test = regression_metrics(y_test, naive_pred_test)
+    if include_baseline:
+        naive_pred_train = np.full(shape=len(y_train), fill_value=float(y_train.mean()))
+        naive_pred_test = np.full(shape=len(y_test), fill_value=float(y_train.mean()))
+        naive_train = regression_metrics(y_train, naive_pred_train)
+        naive_test = regression_metrics(y_test, naive_pred_test)
 
-    rows.append(
-        {
-            "Model": "NaiveMean",
-            "Train_MAE": round(naive_train["MAE"], 2),
-            "Train_RMSE": round(naive_train["RMSE"], 2),
-            "Train_R2": round(naive_train["R2"], 4),
-            "Test_MAE": round(naive_test["MAE"], 2),
-            "Test_RMSE": round(naive_test["RMSE"], 2),
-            "Test_R2": round(naive_test["R2"], 4),
-        }
-    )
+        rows.append(
+            {
+                "Model": "NaiveMean",
+                "Train_MAE": round(naive_train["MAE"], 2),
+                "Train_RMSE": round(naive_train["RMSE"], 2),
+                "Train_R2": round(naive_train["R2"], 4),
+                "Test_MAE": round(naive_test["MAE"], 2),
+                "Test_RMSE": round(naive_test["RMSE"], 2),
+                "Test_R2": round(naive_test["R2"], 4),
+            }
+        )
 
     for name in model_names:
         model = build_pipeline(name, seed, cat_cols, num_cols)
@@ -332,8 +344,10 @@ def run_prompt_code(code: str, df: pd.DataFrame, perf: pd.DataFrame) -> dict[str
         "__builtins__": allowed_builtins,
         "pd": pd,
         "np": np,
+        "train_test_split": train_test_split,
         "df": df.copy(),
         "perf": perf.copy(),
+        "perf_for_model": perf.copy(),
         "metrics_df": st.session_state.get("holdout_metrics"),
         "split_data": st.session_state.get("split_data"),
     }
@@ -358,21 +372,85 @@ def run_prompt_code(code: str, df: pd.DataFrame, perf: pd.DataFrame) -> dict[str
     }
 
 
+_STARTER_TEMPLATE_HINT = "Use this as a starter template and edit it in your own style."
+
+
+def _render_free_runnable(
+    runnable_code: str,
+    prompt_key: str,
+    penalty_points: float = 0.0,
+) -> None:
+    with st.expander("Runnable example", expanded=False):
+        st.markdown("### Runnable reference code")
+        reveal_key = f"free_runnable_revealed_{prompt_key}"
+        if penalty_points > 0 and not st.session_state.get(reveal_key, False):
+            if st.button("Reveal runnable example", key=f"reveal_runnable_{prompt_key}"):
+                st.session_state.challenge_points = float(st.session_state.get("challenge_points", 0.0)) - penalty_points
+                st.session_state[reveal_key] = True
+                st.warning(
+                    f"Penalty applied: -{penalty_points:g} points."
+                    " This will be reflected in your submission score."
+                )
+        if penalty_points <= 0 or st.session_state.get(reveal_key, False):
+            st.markdown(_STARTER_TEMPLATE_HINT)
+            st.code(runnable_code.strip(), language="python")
+
+
+def _render_bonus_trivia(challenge_question: str, challenge_answer: str, answer_key: str) -> None:
+    with st.expander("Bonus trivia (no penalty)", expanded=False):
+        st.markdown("### Optional trivia question")
+        st.caption("This is just for fun — answering correctly earns no penalty and no score impact.")
+        st.markdown(challenge_question)
+        bonus_answer = st.text_input("Your answer", key=answer_key)
+        if bonus_answer.strip().lower() == challenge_answer.strip().lower():
+            st.success("Correct!")
+        elif bonus_answer.strip():
+            st.warning("Not quite. Try again.")
+
+
+def _render_locked_runnable(
+    runnable_code: str,
+    challenge_question: str,
+    challenge_answer: str,
+    answer_key: str,
+    current_answer: str,
+    penalty_points: float,
+    prompt_key: str,
+) -> None:
+    with st.expander("Runnable example (locked)", expanded=bool(current_answer)):
+        st.markdown("### Challenge unlock")
+        st.markdown("Answer the challenge question correctly to reveal the runnable reference code.")
+        st.markdown(challenge_question)
+        user_answer = st.text_input("Enter your answer to unlock", key=answer_key)
+        if user_answer.strip().lower() == challenge_answer.strip().lower():
+            penalty_key = f"runnable_penalty_applied_{prompt_key}"
+            if not st.session_state.get(penalty_key, False):
+                st.session_state.challenge_points = float(st.session_state.get("challenge_points", 0.0)) - penalty_points
+                st.session_state[penalty_key] = True
+                if penalty_points > 0:
+                    st.warning(
+                        f"Penalty applied: -{penalty_points:g} points."
+                        " This will be reflected in your submission score."
+                    )
+            st.success("Correct. Runnable example unlocked.")
+            st.markdown(_STARTER_TEMPLATE_HINT)
+            st.code(runnable_code.strip(), language="python")
+        elif user_answer.strip():
+            st.warning("Not quite. Try again.")
+
+
 def render_prompt_help(
     example_code: str,
     runnable_code: str,
     prompt_key: str,
     challenge_question: str | None = None,
     challenge_answer: str | None = None,
+    locked: bool = True,
+    free_runnable_penalty: float = 0.0,
 ) -> None:
     answer_key = f"unlock_answer_{prompt_key}"
     current_answer = str(st.session_state.get(answer_key, "")).strip()
-    if prompt_key == "p1":
-        penalty_points = 5
-    elif prompt_key == "p4_shape":
-        penalty_points = 1
-    else:
-        penalty_points = 3
+    penalty_points = float(CHALLENGE_PENALTIES.get(prompt_key, 3.0))
 
     with st.expander("Pseudo-code", expanded=False):
         st.markdown("### Pseudo-code guidance")
@@ -381,36 +459,23 @@ def render_prompt_help(
 
     has_challenge = bool(challenge_question) and bool(challenge_answer)
 
-    if has_challenge:
-        with st.expander("Runnable example (locked)", expanded=bool(current_answer)):
-            st.markdown("### Challenge unlock")
-            st.markdown("Answer the challenge question correctly to reveal the runnable reference code.")
-            st.caption(f"Scoring rule: unlocking this runnable example applies a one-time -{penalty_points} point penalty.")
-            st.markdown(challenge_question)
-            user_answer = st.text_input(
-                "Enter your answer to unlock",
-                key=answer_key,
-            )
-
-            if user_answer.strip().lower() == challenge_answer.strip().lower():
-                penalty_key = f"runnable_penalty_applied_{prompt_key}"
-                if not st.session_state.get(penalty_key, False):
-                    st.session_state.challenge_points = int(st.session_state.get("challenge_points", 0)) - penalty_points
-                    st.session_state[penalty_key] = True
-                    st.warning(f"Runnable example unlocked. -{penalty_points} points applied.")
-                st.success("Correct. Runnable example unlocked.")
-                st.markdown("Use this as a starter template and edit it in your own style.")
-                st.code(runnable_code.strip(), language="python")
-            elif user_answer.strip():
-                st.warning("Not quite. Try again.")
+    if not locked:
+        _render_free_runnable(runnable_code, prompt_key=prompt_key, penalty_points=free_runnable_penalty)
+        if has_challenge:
+            _render_bonus_trivia(challenge_question, challenge_answer, answer_key)  # type: ignore[arg-type]
+    elif has_challenge:
+        _render_locked_runnable(runnable_code, challenge_question, challenge_answer, answer_key, current_answer, penalty_points, prompt_key)  # type: ignore[arg-type]
     else:
-        with st.expander("Runnable example", expanded=False):
-            st.markdown("### Runnable reference code")
-            st.markdown("Use this as a starter template and edit it in your own style.")
-            st.code(runnable_code.strip(), language="python")
+        _render_free_runnable(runnable_code, prompt_key=prompt_key)
 
 
-def render_code_runner(label: str, key: str, df: pd.DataFrame, perf: pd.DataFrame) -> None:
+def render_code_runner(
+    label: str,
+    key: str,
+    df: pd.DataFrame,
+    perf: pd.DataFrame,
+    save_result_key: str | None = None,
+) -> None:
     code_key = f"prompt_code_{key}"
     if code_key not in st.session_state:
         st.session_state[code_key] = ""
@@ -428,32 +493,148 @@ def render_code_runner(label: str, key: str, df: pd.DataFrame, perf: pd.DataFram
     if run_clicked:
         result = run_prompt_code(st.session_state[code_key], df=df, perf=perf)
 
-        if result["ok"]:
-            st.success("Code ran successfully.")
-        else:
-            st.error("Code failed. See error details below.")
+        _render_code_runner_output(result=result, save_result_key=save_result_key)
 
-        stdout_text = str(result["stdout"]).strip()
-        if stdout_text:
-            st.markdown("Output")
-            st.code(stdout_text, language="text")
 
-        result_obj = result["result"]
-        if isinstance(result_obj, pd.DataFrame):
-            st.markdown("Result variable")
-            st.dataframe(result_obj, use_container_width=True)
-        elif result_obj is not None:
-            st.markdown("Result variable")
-            st.write(result_obj)
+def _render_code_runner_output(result: dict[str, object], save_result_key: str | None) -> None:
+    if result["ok"]:
+        st.success("Code ran successfully.")
+    else:
+        st.error("Code failed. See error details below.")
 
-        error_text = str(result["error"]).strip()
-        if error_text:
-            st.code(error_text, language="text")
+    stdout_text = str(result["stdout"]).strip()
+    if stdout_text:
+        st.markdown("Output")
+        st.code(stdout_text, language="text")
+
+    result_obj = result["result"]
+    if save_result_key is not None and result["ok"]:
+        st.session_state[save_result_key] = result_obj
+    if isinstance(result_obj, pd.DataFrame):
+        st.markdown("Result variable")
+        st.dataframe(result_obj, use_container_width=True)
+    elif result_obj is not None:
+        st.markdown("Result variable")
+        st.write(result_obj)
+
+    error_text = str(result["error"]).strip()
+    if error_text:
+        st.code(error_text, language="text")
+
+
+def render_prompt6_visuals(metrics_df: pd.DataFrame) -> None:
+    required_cols = {"Model", "Train_RMSE", "Test_RMSE"}
+    if metrics_df.empty or not required_cols.issubset(set(metrics_df.columns)):
+        st.warning(
+            "Need a non-empty result DataFrame with columns: Model, Train_RMSE, Test_RMSE."
+        )
+        return
+
+    plot_df = metrics_df.copy()
+    plot_df["Train_RMSE"] = pd.to_numeric(plot_df["Train_RMSE"], errors="coerce")
+    plot_df["Test_RMSE"] = pd.to_numeric(plot_df["Test_RMSE"], errors="coerce")
+    plot_df = plot_df.dropna(subset=["Train_RMSE", "Test_RMSE", "Model"]).copy()
+    if plot_df.empty:
+        st.warning("No valid numeric RMSE values found to chart.")
+        return
+
+    plot_df = plot_df.sort_values("Test_RMSE", ascending=True).reset_index(drop=True)
+    winner = str(plot_df.iloc[0]["Model"])
+    winner_test_rmse = float(plot_df.iloc[0]["Test_RMSE"])
+    winner_gap = float(plot_df.iloc[0]["Test_RMSE"] - plot_df.iloc[0]["Train_RMSE"])
+    second_best_rmse = float(plot_df.iloc[1]["Test_RMSE"]) if len(plot_df) > 1 else np.nan
+    lead_pct = (
+        ((second_best_rmse - winner_test_rmse) / second_best_rmse) * 100
+        if not np.isnan(second_best_rmse) and second_best_rmse > 0
+        else np.nan
+    )
+
+    st.markdown("### Model Visual Dashboard")
+    st.caption(
+        "Use this panel after running Prompt 6 code. Start with winner + RMSE cards, "
+        "then read the two charts to check generalization risk."
+    )
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Top model", winner)
+    c2.metric("Winner Test_RMSE", f"{winner_test_rmse:.2f}")
+    if np.isnan(lead_pct):
+        c3.metric("Lead over #2", "N/A")
+    else:
+        c3.metric("Lead over #2", f"{lead_pct:.1f}%")
+
+    c4, c5 = st.columns(2)
+    c4.metric("Winner train-test gap", f"{winner_gap:+.2f}")
+    if winner_gap > 3.0:
+        risk_level = "High"
+    elif winner_gap > 1.5:
+        risk_level = "Moderate"
+    else:
+        risk_level = "Low"
+    risk_color = {
+        "Low": "#22c55e",
+        "Moderate": "#f59e0b",
+        "High": "#ef4444",
+    }[risk_level]
+    c5.metric(
+        "Overfitting risk",
+        risk_level,
+    )
+
+    st.markdown(
+        (
+            "<div style='margin-top:6px;'>"
+            "<span style='display:inline-block;padding:6px 10px;border-radius:999px;"
+            f"background:{risk_color};color:#ffffff;font-weight:600;'>"
+            f"Overfitting Risk: {risk_level}</span>"
+            "<span style='margin-left:10px;color:#d1d5db;'>"
+            "Train-Test gap guide: Low (&lt;= 1.5), Moderate (1.5 to 3.0), High (&gt; 3.0)"
+            "</span>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
+
+    st.success(f"Current winner by Test_RMSE: {winner}")
+
+    fig1, ax1 = plt.subplots(figsize=(8, 4))
+    sns.barplot(data=plot_df, x="Test_RMSE", y="Model", palette="crest", ax=ax1)
+    ax1.set_title("Leaderboard: Test RMSE by Model (Lower is Better)")
+    ax1.set_xlabel("Test RMSE")
+    ax1.set_ylabel("Model")
+    st.pyplot(fig1)
+    plt.close(fig1)
+
+    gap_df = plot_df[["Model", "Train_RMSE", "Test_RMSE"]].melt(
+        id_vars="Model",
+        var_name="Split",
+        value_name="RMSE",
+    )
+    fig2, ax2 = plt.subplots(figsize=(8, 4))
+    sns.barplot(data=gap_df, x="Model", y="RMSE", hue="Split", palette="Set2", ax=ax2)
+    ax2.set_title("Generalization Check: Train vs Test RMSE")
+    ax2.set_xlabel("Model")
+    ax2.set_ylabel("RMSE")
+    ax2.tick_params(axis="x", rotation=20)
+    st.pyplot(fig2)
+    plt.close(fig2)
+
+    with st.expander("See numeric table", expanded=False):
+        st.dataframe(
+            plot_df[["Model", "Train_RMSE", "Test_RMSE"]],
+            use_container_width=True,
+            hide_index=True,
+        )
+
+    st.markdown("### Interpretation quick-check")
+    st.markdown("- Which model has the lowest Test_RMSE?")
+    st.markdown("- Is any model's Train_RMSE much lower than Test_RMSE (overfitting warning)?")
+    st.markdown("- Would you trust the winning model on new shows, and why?")
 
 
 def compute_submission_score(
     metrics_df: pd.DataFrame | None,
-    challenge_points: int,
+    challenge_points: float,
 ) -> dict[str, float | str]:
     if metrics_df is None or metrics_df.empty:
         return {
@@ -560,8 +741,28 @@ def render_team_results_store(
             best_test_rmse = float(best_row["Test_RMSE"])
         metrics_json = metrics_df.to_json(orient="records")
 
-    challenge_points = int(st.session_state.get("challenge_points", 0))
+    challenge_points = float(st.session_state.get("challenge_points", 0.0))
     score_breakdown = compute_submission_score(metrics_df=metrics_df, challenge_points=challenge_points)
+
+    tally_rows: list[dict[str, object]] = []
+    running_tally = 0.0
+    for prompt_id in CHALLENGE_PENALTIES:
+        locked_unlock_key = f"runnable_penalty_applied_{prompt_id}"
+        free_reveal_key = f"free_runnable_revealed_{prompt_id}"
+        unlocked = bool(st.session_state.get(locked_unlock_key, False) or st.session_state.get(free_reveal_key, False))
+        penalty_value = float(CHALLENGE_PENALTIES[prompt_id])
+        delta_points = -penalty_value if unlocked else 0.0
+        running_tally += delta_points
+        tally_rows.append(
+            {
+                "prompt": prompt_id,
+                "runnable_unlocked": unlocked,
+                "penalty_points": round(penalty_value, 2),
+                "points_applied": round(delta_points, 2),
+            }
+        )
+
+    unlock_tally_json = json.dumps(tally_rows)
 
     result_row = {
         "timestamp": pd.Timestamp.now().isoformat(),
@@ -573,7 +774,8 @@ def render_team_results_store(
         "random_seed": int(random_seed),
         "best_model": best_model,
         "best_test_rmse": best_test_rmse,
-        "challenge_points": challenge_points,
+        "challenge_points": round(challenge_points, 2),
+        "challenge_tally_total": round(running_tally, 2),
         "score_total": score_breakdown["score_total"],
         "score_grade": score_breakdown["score_grade"],
         "score_improvement": score_breakdown["score_improvement"],
@@ -587,6 +789,7 @@ def render_team_results_store(
         "prompt3_outlier_code": str(st.session_state.get("prompt_code_p3_outliers", "")),
         "prompt4_code": str(st.session_state.get("prompt_code_p4_drop", "")),
         "metrics_json": json.dumps(json.loads(metrics_json)) if metrics_json else "",
+        "challenge_unlock_tally_json": unlock_tally_json,
     }
 
     output_path = Path("team_results.csv")
@@ -603,6 +806,12 @@ def render_team_results_store(
     st.info(
         f"Submission score: {score_breakdown['score_total']}/100 (Grade {score_breakdown['score_grade']})"
     )
+    st.markdown("### Unlock and penalty tally")
+    st.caption("This shows where runnable examples were unlocked and how each unlock affected points.")
+    st.dataframe(pd.DataFrame(tally_rows), use_container_width=True)
+    st.info(
+        f"Total challenge adjustment: {round(challenge_points, 2):+g} points"
+    )
     st.dataframe(new_row_df, use_container_width=True)
 
 
@@ -613,7 +822,7 @@ if "holdout_models" not in st.session_state:
 if "split_data" not in st.session_state:
     st.session_state.split_data = None
 if "challenge_points" not in st.session_state:
-    st.session_state.challenge_points = 0
+    st.session_state.challenge_points = 0.0
 for prompt_id, challenge_cfg in CHALLENGE_DEFAULTS.items():
     q_key = f"challenge_question_{prompt_id}"
     a_key = f"challenge_answer_{prompt_id}"
@@ -658,93 +867,6 @@ with st.sidebar:
     st.markdown("- RMSE: stronger penalty for big misses (lower is better).")
     st.markdown("- R2: proportion of variance explained (higher is better).")
     st.markdown("- Pick winners mainly by **Test_RMSE**, then support with MAE and R2.")
-
-    st.markdown("### Challenge Settings")
-    st.caption("Edit challenge question and answer per prompt.")
-    with st.expander("Configure challenge prompts", expanded=False):
-        st.markdown("Prompt 1")
-        st.session_state["challenge_question_p1"] = st.text_input(
-            "Prompt 1 challenge question",
-            value=st.session_state["challenge_question_p1"],
-            key="challenge_question_p1_input",
-        )
-        st.session_state["challenge_answer_p1"] = st.text_input(
-            "Prompt 1 challenge answer",
-            value=st.session_state["challenge_answer_p1"],
-            key="challenge_answer_p1_input",
-        )
-
-        st.markdown("Prompt 2")
-        st.session_state["challenge_question_p2_stats"] = st.text_input(
-            "Prompt 2 challenge question",
-            value=st.session_state["challenge_question_p2_stats"],
-            key="challenge_question_p2_stats_input",
-        )
-        st.session_state["challenge_answer_p2_stats"] = st.text_input(
-            "Prompt 2 challenge answer",
-            value=st.session_state["challenge_answer_p2_stats"],
-            key="challenge_answer_p2_stats_input",
-        )
-
-        st.markdown("Prompt 2 (Outlier removal)")
-        st.session_state["challenge_question_p2_outliers"] = st.text_input(
-            "Prompt 2 outlier challenge question",
-            value=st.session_state["challenge_question_p2_outliers"],
-            key="challenge_question_p2_outliers_input",
-        )
-        st.session_state["challenge_answer_p2_outliers"] = st.text_input(
-            "Prompt 2 outlier challenge answer",
-            value=st.session_state["challenge_answer_p2_outliers"],
-            key="challenge_answer_p2_outliers_input",
-        )
-
-        st.markdown("Prompt 3")
-        st.session_state["challenge_question_p3_drop"] = st.text_input(
-            "Prompt 3 challenge question",
-            value=st.session_state["challenge_question_p3_drop"],
-            key="challenge_question_p3_drop_input",
-        )
-        st.session_state["challenge_answer_p3_drop"] = st.text_input(
-            "Prompt 3 challenge answer",
-            value=st.session_state["challenge_answer_p3_drop"],
-            key="challenge_answer_p3_drop_input",
-        )
-
-        st.markdown("Prompt 4")
-        st.session_state["challenge_question_p4_shape"] = st.text_input(
-            "Prompt 4 challenge question",
-            value=st.session_state["challenge_question_p4_shape"],
-            key="challenge_question_p4_shape_input",
-        )
-        st.session_state["challenge_answer_p4_shape"] = st.text_input(
-            "Prompt 4 challenge answer",
-            value=st.session_state["challenge_answer_p4_shape"],
-            key="challenge_answer_p4_shape_input",
-        )
-
-        st.markdown("Prompt 5")
-        st.session_state["challenge_question_p5_prepare"] = st.text_input(
-            "Prompt 5 challenge question",
-            value=st.session_state["challenge_question_p5_prepare"],
-            key="challenge_question_p5_prepare_input",
-        )
-        st.session_state["challenge_answer_p5_prepare"] = st.text_input(
-            "Prompt 5 challenge answer",
-            value=st.session_state["challenge_answer_p5_prepare"],
-            key="challenge_answer_p5_prepare_input",
-        )
-
-        st.markdown("Prompt 6")
-        st.session_state["challenge_question_p6_modeling"] = st.text_input(
-            "Prompt 6 challenge question",
-            value=st.session_state["challenge_question_p6_modeling"],
-            key="challenge_question_p6_modeling_input",
-        )
-        st.session_state["challenge_answer_p6_modeling"] = st.text_input(
-            "Prompt 6 challenge answer",
-            value=st.session_state["challenge_answer_p6_modeling"],
-            key="challenge_answer_p6_modeling_input",
-        )
 
 p1_challenge_question = str(st.session_state["challenge_question_p1"]).strip() or CHALLENGE_DEFAULTS["p1"]["question"]
 p1_challenge_answer = str(st.session_state["challenge_answer_p1"]).strip() or CHALLENGE_DEFAULTS["p1"]["answer"]
@@ -922,51 +1044,343 @@ with st.expander("Prompt 3: Drop columns not needed for modeling", expanded=Fals
 
 with st.expander("Prompt 4: Define target and candidate features", expanded=False):
     st.info("Story beat: Assume Prompt 3 already cleaned the table. Your job now is to name the prediction target (`SCORE`) and list the remaining columns you can use as features.")
+
+    intro_col_1, intro_col_2 = st.columns(2)
+    with intro_col_1:
+        st.markdown("### Setlist planning roadmap")
+        st.markdown("1. Decide what Ben is trying to predict after each show.")
+        st.markdown("2. Label that prediction target clearly.")
+        st.markdown("3. Treat the remaining columns like clues the band can see before taking the stage.")
+        st.markdown("4. Build a quick summary before moving into model prep.")
+    with intro_col_2:
+        st.markdown("### What Ben needs from this step")
+        st.markdown("- One target column: `SCORE`.")
+        st.markdown("- A list of candidate features the model can learn from.")
+        st.markdown("- A short summary showing the target and example features.")
+
+    with st.expander("Why this matters for the band", expanded=False):
+        st.markdown("- The target is the thing Ben wants to predict after a future gig.")
+        st.markdown("- Features are the signals available before the show starts.")
+        st.markdown("- If you mix up the target and the features, the model will rehearse the wrong song.")
+        st.markdown("- This step tells the model what to listen to before Prompt 5 builds the rehearsal data.")
+
+    st.markdown("### Suggested backstage order")
+    st.caption("Treat this like assigning roles before the band walks on stage.")
+    st.markdown("1. Set `target_column = 'SCORE'`.")
+    st.markdown("2. Build `feature_columns` from every other remaining column.")
+    st.markdown("3. Count how many features are left after cleanup.")
+    st.markdown("4. Save a simple summary in `result`.")
+
     render_prompt_help(
         example_code=(
             "# Pseudo-code recipe"
             "\n# 1. Assume Prompt 3 already removed the bad columns"
-            "\n# 2. Set the target column to SCORE"
-            "\n#    Python idea: target_column = \"SCORE\""
-            "\n# 3. Treat every other remaining column as a candidate feature"
-            "\n#    Python idea: feature_columns = [c for c in df.columns if c != target_column]"
-            "\n# 4. Save a quick summary in result"
-            "\n#    Python idea: result = {\"target_column\": target_column, \"feature_columns\": feature_columns}"
-            "\n# 5. Return result"
+            "\n# 2. Defensive move: Make a copy to avoid changing the original"
+            "\n#    Python idea: model_df = df.copy()"
+            "\n# 3. Identify the prediction target explicitly"
+            "\n#    Python idea: target_column = 'SCORE' (this is what Ben wants to predict)"
+            "\n# 4. Build y from the target column"
+            "\n#    Python idea: y = model_df[target_column].values"
+            "\n# 5. Build X from all columns except the target"
+            "\n#    Python idea: X = model_df.drop(columns=[target_column]).values"
+            "\n# 6. Save a quick summary in result (no splitting yet—that happens in Prompt 5)"
+            "\n#    Python idea: result = {'target_column': target_column, 'X_shape': X.shape, 'y_shape': y.shape, 'feature_count': X.shape[1]}"
+            "\n# 7. Print the result so you know what you are working with"
+            "\n#    Python idea: print(result)"
         ),
         runnable_code=(
             "# Step 1: Assume df is already cleaned from Prompt 3"
             "\nclean_df = df.copy()"
-            "\n# Step 2: Choose the target column we want to predict"
-            "\ntarget_column = \"SCORE\""
-            "\n# Step 3: Use every other remaining column as a feature"
-            "\nfeature_columns = [c for c in clean_df.columns if c != target_column]"
-            "\n# Step 4: Build an easy-to-read summary"
-            "\nresult = pd.DataFrame({"
-            "\n    \"target_column\": [target_column],"
-            "\n    \"feature_count\": [len(feature_columns)],"
-            "\n    \"example_feature_1\": [feature_columns[0] if len(feature_columns) > 0 else \"N/A\"],"
-            "\n    \"example_feature_2\": [feature_columns[1] if len(feature_columns) > 1 else \"N/A\"],"
-            "\n    \"example_feature_3\": [feature_columns[2] if len(feature_columns) > 2 else \"N/A\"]"
-            "\n})"
+            "\n"
+            "\n# Main approach: explicit target selection (safer than positional selection)"
+            "\nmodel_df = clean_df.copy()"
+            "\n"
+            "\n# SCORE is our specific prediction target (set by the band's goal)"
+            "\ntarget_column = 'SCORE'"
+            "\ny = model_df[target_column].values"
+            "\nX = model_df.drop(columns=[target_column]).values"
+            "\n"
+            "\nresult = {'target_column': target_column, 'X_shape': X.shape, 'y_shape': y.shape, 'feature_count': X.shape[1]}"
             "\nprint(result)"
+            "\n"
         ),
         prompt_key="p4_shape",
         challenge_question=p4_challenge_question,
         challenge_answer=p4_challenge_answer,
     )
     render_code_runner(
-        label="Write your code for Prompt 4",
+        label="Write your code for Prompt 4 (choose the band's target and signals)",
         key="p4_shape",
         df=df,
         perf=perf,
     )
 
+    st.markdown("### Backstage checklist")
+    st.markdown("- Did you set `SCORE` as the target?")
+    st.markdown("- Did you exclude the target from the feature list?")
+
 with st.expander("Prompt 5: Prepare model-ready data", expanded=False):
     st.info("Story beat: before the rehearsal lab starts, prepare clean modeling inputs and a reliable train/test split.")
 
-    st.markdown("### Modeling setup")
-    st.caption("These controls affect Prompt 6 benchmarking as well.")
+    intro_col_1, intro_col_2 = st.columns(2)
+    with intro_col_1:
+        st.markdown("### Soundcheck roadmap")
+        st.markdown("1. Bring X and y from Prompt 4 (target and features already defined).")
+        st.markdown("2. Split the gigs into rehearsal data (train) and live-show test data.")
+        st.markdown("3. Verify the split so you know both sets have enough gigs to learn from.")
+    with intro_col_2:
+        st.markdown("### What Ben needs from you")
+        st.markdown("- `X_train`, `X_test`, `y_train`, and `y_test`.")
+        st.markdown("- A shape summary showing how the split divided the gigs.")
+        st.markdown("- Confidence that train and test sizes are reasonable before Prompt 6.")
+
+    with st.expander("Why this step matters for the band", expanded=False):
+        st.markdown("- Prompt 4 already told us what to predict (SCORE) and what features to use (X).")
+        st.markdown("- Now we split the gigs into **practice shows** (train) and **unseen shows** (test).")
+        st.markdown("- The model learns patterns from training data, but we test it on completely new gigs.")
+        st.markdown("- This is the only fair way to know if the model will work on future shows.")
+        st.markdown("- If we trained and tested on the same data, the model would cheat and look better than it really is.")
+    st.markdown("### Suggested setup order")
+    st.caption("Build this like a pre-show setup: one cable at a time.")
+    st.markdown("1. Assume X and y are already prepared from Prompt 4.")
+    st.markdown("2. Use `train_test_split(...)` to divide the gigs into practice (train) and test sets.")
+    st.markdown("3. Print the shapes so you know the split worked before Prompt 6 begins.")
+
+    render_prompt_help(
+        example_code=(
+            "# Pseudo-code recipe\n"
+            "# Step 1: Assume X and y are already prepared from Prompt 4\n"
+            "# Step 2: Split the data into rehearsal data and live-show test data\n"
+            "#    Python idea: X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=..., random_state=...)\n"
+            "#    Reference: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html\n"
+            "# Step 3: Save quick shape checks in result to verify the split worked\n"
+            "# Step 4: Print the shapes before moving to Prompt 6\n"
+        ),
+        runnable_code=(
+            "# Step 1: Split the data into rehearsal data and live-show test data\n"
+            "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n"
+            "\n"
+            "# Step 2: Save quick shape checks in result to verify the split worked\n"
+            "result = {'x_train_shape': X_train.shape, 'x_test_shape': X_test.shape, 'y_train_shape': y_train.shape, 'y_test_shape': y_test.shape}\n"
+            "\n"
+            "# Step 3: Print the shapes before moving to Prompt 6\n"
+            "print(result)\n"
+        ),
+        prompt_key="p5_prepare",
+        challenge_question=p5_challenge_question,
+        challenge_answer=p5_challenge_answer,
+        locked=True,
+    )
+    render_code_runner(
+        label="Write your code for Prompt 5 (prep the band's rehearsal data)",
+        key="p5_prepare",
+        df=df,
+        perf=perf,
+    )
+
+
+with st.expander("Prompt 6: Train and compare regression models", expanded=False):
+    st.info("Story beat: run the rehearsal benchmark. Train three regressors and compare fairly.")
+
+    intro_col_1, intro_col_2 = st.columns(2)
+    with intro_col_1:
+        st.markdown("### Rehearsal roadmap")
+        st.markdown("1. Bring X_train, X_test, y_train, y_test from Prompt 5 (split data ready to use).")
+        st.markdown("2. Train three models on the training data.")
+        st.markdown("3. Evaluate each model on train and test data.")
+        st.markdown("4. Sort by `Test_RMSE` to see which model reads the crowd best.")
+    with intro_col_2:
+        st.markdown("### What to hand Ben")
+        st.markdown("- A final DataFrame named `result`.")
+        st.markdown("- 3 total rows: one per trained model.")
+        st.markdown("- Columns for Train/Test MAE, RMSE, and R2.")
+        st.markdown("- Lowest `Test_RMSE` at the top, so Ben can quickly see the winner.")
+
+    with st.expander("What do these models do?", expanded=False):
+        st.markdown("**LinearRegression:** Finds a straight-line pattern. It learns: 'Higher team size = higher score' or 'Faster songs = lower scores.' Simple and easy to explain.")
+        st.markdown("**RandomForestRegressor:** Like asking 100 different judges and averaging their votes. It can catch weird patterns LinearRegression misses.")
+        st.markdown("**KNeighborsRegressor:** Looks backward in time: 'Your next show is like shows #5, #12, and #18, so I'll guess the average of those.' Learns from similarity.")
+        st.markdown("\n**Train metrics:** How well the model did on past shows (it saw these before).")
+        st.markdown("**Test metrics:** How well it guesses *new* shows (it's never seen these). This is the real test.")
+
+    st.markdown("### Suggested soundcheck order")
+    st.caption("Build this one step at a time. Start with one model, then add the next two.")
+    st.markdown("**Step 1:** Load X_train, X_test, y_train, y_test from Prompt 5.")
+    st.markdown("**Step 2:** Create a list called `rows` to store results.")
+    st.markdown("**Step 3:** For each of the 3 models, fit it on train data, predict on both train and test, calculate metrics, and save.")
+    st.markdown("**Step 4:** Convert `rows` to a DataFrame and sort by `Test_RMSE` (lower is better on unseen shows).")
+    st.markdown("**Pro tip:** Run and test each step before moving to the next. Don't try to write everything at once.")
+
+    p6_runnable_code = (
+        "# STEP 1: Assume X_train, X_test, y_train, y_test are ready from Prompt 5\n"
+        "# (If doing this standalone, you can rebuild from perf as shown in Prompt 5 runnable)\n"
+        "\n"
+        "# STEP 2: Create a list to store all model results\n"
+        "rows = []\n"
+        "\n"
+        "# STEP 3: List the 3 models to train\n"
+        "models = [\n"
+        "    ('LinearRegression', LinearRegression()),\n"
+        "    ('RandomForestRegressor', RandomForestRegressor(n_estimators=100, random_state=42)),\n"
+        "    ('KNeighborsRegressor', KNeighborsRegressor(n_neighbors=5))\n"
+        "]\n"
+        "\n"
+        "# STEP 4: Train each model and evaluate on train and test\n"
+        "for name, model in models:\n"
+        "    model.fit(X_train, y_train)  # Fit (train) on past shows\n"
+        "    pred_train = model.predict(X_train)  # Predict on past shows\n"
+        "    pred_test = model.predict(X_test)  # Predict on new shows (this is the real test)\n"
+        "    rows.append({\n"
+        "        'Model': name,\n"
+        "        'Train_MAE': round(mean_absolute_error(y_train, pred_train), 2),\n"
+        "        'Train_RMSE': round(np.sqrt(mean_squared_error(y_train, pred_train)), 2),\n"
+        "        'Train_R2': round(r2_score(y_train, pred_train), 4),\n"
+        "        'Test_MAE': round(mean_absolute_error(y_test, pred_test), 2),\n"
+        "        'Test_RMSE': round(np.sqrt(mean_squared_error(y_test, pred_test)), 2),\n"
+        "        'Test_R2': round(r2_score(y_test, pred_test), 4),\n"
+        "    })\n"
+        "\n"
+        "# STEP 5: Show results sorted by test performance (Test_RMSE lowest = best on new shows)\n"
+        "result = pd.DataFrame(rows).sort_values('Test_RMSE', ascending=True).reset_index(drop=True)\n"
+        "print(result)\n"
+    )
+
+    p6_starter_scaffold = (
+        "# LIGHT STARTER: begin with ONE model, then add the other two\n"
+        "rows = []\n"
+        "models = [('LinearRegression', LinearRegression())]\n"
+        "\n"
+        "for name, model in models:\n"
+        "    model.fit(X_train, y_train)\n"
+        "    pred_train = model.predict(X_train)\n"
+        "    pred_test = model.predict(X_test)\n"
+        "    rows.append({\n"
+        "        'Model': name,\n"
+        "        'Train_MAE': round(mean_absolute_error(y_train, pred_train), 2),\n"
+        "        'Train_RMSE': round(np.sqrt(mean_squared_error(y_train, pred_train)), 2),\n"
+        "        'Train_R2': round(r2_score(y_train, pred_train), 4),\n"
+        "        'Test_MAE': round(mean_absolute_error(y_test, pred_test), 2),\n"
+        "        'Test_RMSE': round(np.sqrt(mean_squared_error(y_test, pred_test)), 2),\n"
+        "        'Test_R2': round(r2_score(y_test, pred_test), 4),\n"
+        "    })\n"
+        "\n"
+        "result = pd.DataFrame(rows).sort_values('Test_RMSE').reset_index(drop=True)\n"
+        "print(result)\n"
+        "\n"
+        "# Challenge extension: add RandomForestRegressor and KNeighborsRegressor to models\n"
+    )
+
+    render_prompt_help(
+        example_code=(
+            "# Pseudo-code recipe\n"
+            "# 1. Load X_train, X_test, y_train, y_test from Prompt 5\n"
+            "# 2. Create an empty list: rows = []\n"
+            "# 3. Create a list of 3 models to train\n"
+            "# 4. FOR each model:\n"
+            "#    a. Fit it on X_train, y_train\n"
+            "#    b. Predict on X_train and X_test\n"
+            "#    c. Calculate metrics (MAE, RMSE, R2) for both\n"
+            "#    d. Add results to rows\n"
+            "# 5. Convert rows to DataFrame\n"
+            "# 6. Sort by Test_RMSE (best on unseen data is at top)\n"
+            "# 7. Save as result\n"
+        ),
+        runnable_code=p6_runnable_code,
+        prompt_key="p6_modeling",
+        challenge_question=p6_challenge_question,
+        challenge_answer=p6_challenge_answer,
+    )
+
+    beginner_mode = st.toggle(
+        "Beginner mode for Prompt 6",
+        value=True,
+        key="p6_beginner_mode",
+        help="ON = one-model starter first. OFF = full 3-model reference starter.",
+    )
+    if beginner_mode:
+        st.caption("Beginner mode is ON. Starter code begins with one model, then you extend it.")
+    else:
+        st.caption("Advanced mode is ON. Starter code includes the full 3-model workflow.")
+
+    if st.button("Insert starter into Prompt 6 editor", key="insert_p6_template_code"):
+        if beginner_mode:
+            st.session_state["prompt_code_p6_modeling"] = p6_starter_scaffold
+            st.success("Beginner starter inserted.")
+        else:
+            st.session_state["prompt_code_p6_modeling"] = p6_runnable_code
+            st.success("Advanced starter inserted.")
+
+    with st.expander("Optional: insert the other starter version", expanded=False):
+        c_insert_1, c_insert_2 = st.columns(2)
+        if c_insert_1.button("Insert beginner starter", key="insert_p6_beginner_alt"):
+            st.session_state["prompt_code_p6_modeling"] = p6_starter_scaffold
+            st.success("Beginner starter inserted.")
+        if c_insert_2.button("Insert advanced starter", key="insert_p6_advanced_alt"):
+            st.session_state["prompt_code_p6_modeling"] = p6_runnable_code
+            st.success("Advanced starter inserted.")
+
+    tab_build, tab_visuals, tab_interpret = st.tabs(
+        ["Build", "Visualize", "Interpret"]
+    )
+
+    with tab_build:
+        st.markdown("### Build Track")
+        st.caption("Goal: produce a DataFrame named result with one row per model and sorted by Test_RMSE.")
+        if beginner_mode:
+            st.markdown("1. Start with one model first (LinearRegression).")
+            st.markdown("2. Make sure your code runs and returns result.")
+            st.markdown("3. Add RandomForestRegressor and KNeighborsRegressor after Step 2 works.")
+        else:
+            st.markdown("1. Start with all three models in your models list.")
+            st.markdown("2. Run once to confirm result has 3 rows.")
+            st.markdown("3. Improve readability with comments and clear variable names.")
+        render_code_runner(
+            label="Write your code for Prompt 6 (build the band benchmark step by step)",
+            key="p6_modeling",
+            df=df,
+            perf=perf_for_model if 'perf_for_model' in locals() and perf_for_model is not None else df,
+            save_result_key="p6_result_df",
+        )
+
+    with tab_visuals:
+        st.markdown("### Visualize Track")
+        st.caption("Goal: quickly identify the winner and check overfitting risk.")
+        st.markdown("1. Confirm which model has the lowest Test_RMSE.")
+        st.markdown("2. Check whether Train_RMSE is much lower than Test_RMSE.")
+        metrics_source = st.session_state.get("p6_result_df")
+        if not isinstance(metrics_source, pd.DataFrame):
+            metrics_source = st.session_state.get("holdout_metrics")
+
+        if isinstance(metrics_source, pd.DataFrame):
+            render_prompt6_visuals(metrics_source)
+        else:
+            st.info(
+                "Run your Prompt 6 code first (with a DataFrame assigned to result), "
+                "or use the built-in benchmark button to generate model metrics."
+            )
+
+    with tab_interpret:
+        st.markdown("### Interpret Track")
+        st.caption("Goal: write short analysis notes now so Prompt 7 feels easier.")
+        st.markdown("1. Winner model: <name>")
+        st.markdown("2. Why it won: <lowest Test_RMSE or strongest generalization>")
+        st.markdown("3. Risk level: <low / moderate / high>")
+        st.markdown("4. One practical recommendation for Ben before next show")
+        st.text_area(
+            "Prompt 6 interpretation notes (used in Prompt 7)",
+            key="p6_interpret_notes",
+            height=120,
+            placeholder="Example: RandomForest had the lowest Test_RMSE and moderate train-test gap, so it is the best current choice but should be validated on more gigs.",
+        )
+
+    st.markdown("### Backstage checklist before the encore")
+    st.markdown("- ✅ Did you fit each model on train data and evaluate on both train and test?")
+    st.markdown("- ✅ Did your result table show exactly 3 trained models?")
+    st.markdown("- ✅ Did you compare train vs. test metrics to spot overfitting (train much better = risky)?")
+    st.markdown("- 💡 **Next:** The model with the lowest Test_RMSE is your winner for Prompt 7.")
+
+    st.markdown("### Built-in benchmark settings")
+    st.caption("Use these to configure the optional automated benchmark button below. These do NOT affect your code.")
     remove_outliers = st.toggle(
         "Remove score outliers",
         value=remove_outliers,
@@ -992,119 +1406,11 @@ with st.expander("Prompt 5: Prepare model-ready data", expanded=False):
     try:
         perf_for_model = build_performance_table(df, remove_outliers=remove_outliers)
     except Exception as exc:
-        st.error(f"Unable to build performance-level table: {exc}")
-        perf_for_model = None
-
-    render_prompt_help(
-        example_code=(
-            "# Pseudo-code recipe\n"
-            "# 1. Start from perf_for_model\n"
-            "# 2. Remove leakage columns\n"
-            "# 3. Set y to SCORE\n"
-            "# 4. Set X to all remaining columns except SCORE\n"
-            "# 5. Split into train/test\n"
-            "# 6. Save quick shape checks in result\n"
-        ),
-        runnable_code=(
-            "drop_cols = ['PERFORMANCE_ID', 'RATING', 'PERFORMANCE_DATETIME']\n"
-            "safe_cols = [c for c in drop_cols if c in perf_for_model.columns]\n"
-            "X = perf_for_model.drop(columns=safe_cols + ['SCORE']).fillna(0)\n"
-            "y = perf_for_model['SCORE'].fillna(0)\n"
-            "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n"
-            "result = {'x_train': X_train.shape, 'x_test': X_test.shape, 'y_train': y_train.shape, 'y_test': y_test.shape}\n"
-            "print(result)\n"
-        ),
-        prompt_key="p5_prepare",
-        challenge_question=p5_challenge_question,
-        challenge_answer=p5_challenge_answer,
-    )
-    render_code_runner(
-        label="Write your code for Prompt 5",
-        key="p5_prepare",
-        df=df,
-        perf=perf_for_model if perf_for_model is not None else df,
-    )
-
-
-with st.expander("Prompt 6: Train and compare regression models", expanded=False):
-    st.info("Story beat: run the rehearsal benchmark. Train baseline + three regressors and compare fairly.")
-
-    p6_runnable_code = (
-        "from sklearn.model_selection import train_test_split\n"
-        "from sklearn.linear_model import LinearRegression\n"
-        "from sklearn.ensemble import RandomForestRegressor\n"
-        "from sklearn.neighbors import KNeighborsRegressor\n"
-        "from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score\n"
-        "import numpy as np\n"
-        "\n"
-        "drop_cols = ['PERFORMANCE_ID', 'RATING', 'PERFORMANCE_DATETIME']\n"
-        "safe_cols = [c for c in drop_cols if c in perf_for_model.columns]\n"
-        "X = perf_for_model.drop(columns=safe_cols + ['SCORE']).fillna(0)\n"
-        "y = perf_for_model['SCORE'].fillna(0)\n"
-        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n"
-        "\n"
-        "rows = []\n"
-        "naive_pred_train = np.full(len(y_train), y_train.mean())\n"
-        "naive_pred_test = np.full(len(y_test), y_train.mean())\n"
-        "rows.append({\n"
-        "    'Model': 'NaiveMean',\n"
-        "    'Train_MAE': round(mean_absolute_error(y_train, naive_pred_train), 2),\n"
-        "    'Train_RMSE': round(np.sqrt(mean_squared_error(y_train, naive_pred_train)), 2),\n"
-        "    'Train_R2': round(r2_score(y_train, naive_pred_train), 4),\n"
-        "    'Test_MAE': round(mean_absolute_error(y_test, naive_pred_test), 2),\n"
-        "    'Test_RMSE': round(np.sqrt(mean_squared_error(y_test, naive_pred_test)), 2),\n"
-        "    'Test_R2': round(r2_score(y_test, naive_pred_test), 4),\n"
-        "})\n"
-        "\n"
-        "models = [\n"
-        "    ('LinearRegression', LinearRegression()),\n"
-        "    ('RandomForestRegressor', RandomForestRegressor(n_estimators=100, random_state=42)),\n"
-        "    ('KNeighborsRegressor', KNeighborsRegressor(n_neighbors=5))\n"
-        "]\n"
-        "\n"
-        "for name, model in models:\n"
-        "    model.fit(X_train, y_train)\n"
-        "    pred_train = model.predict(X_train)\n"
-        "    pred_test = model.predict(X_test)\n"
-        "    rows.append({\n"
-        "        'Model': name,\n"
-        "        'Train_MAE': round(mean_absolute_error(y_train, pred_train), 2),\n"
-        "        'Train_RMSE': round(np.sqrt(mean_squared_error(y_train, pred_train)), 2),\n"
-        "        'Train_R2': round(r2_score(y_train, pred_train), 4),\n"
-        "        'Test_MAE': round(mean_absolute_error(y_test, pred_test), 2),\n"
-        "        'Test_RMSE': round(np.sqrt(mean_squared_error(y_test, pred_test)), 2),\n"
-        "        'Test_R2': round(r2_score(y_test, pred_test), 4),\n"
-        "    })\n"
-        "\n"
-        "result = pd.DataFrame(rows).sort_values('Test_RMSE', ascending=True).reset_index(drop=True)\n"
-        "print(result)\n"
-    )
-
-    render_prompt_help(
-        example_code=(
-            "# Pseudo-code recipe\n"
-            "# 1. Rebuild X, y and split from perf_for_model\n"
-            "# 2. Add NaiveMean baseline metrics\n"
-            "# 3. Train LinearRegression, RandomForest, KNN\n"
-            "# 4. Compute Train/Test MAE, RMSE, R2 for each\n"
-            "# 5. Sort by Test_RMSE and save as result\n"
-        ),
-        runnable_code=p6_runnable_code,
-        prompt_key="p6_modeling",
-        challenge_question=p6_challenge_question,
-        challenge_answer=p6_challenge_answer,
-    )
-
-    if st.button("Insert starter template into Prompt 6 editor", key="insert_p6_template_code"):
-        st.session_state["prompt_code_p6_modeling"] = p6_runnable_code
-        st.success("Starter template inserted into Prompt 6 editor.")
-
-    render_code_runner(
-        label="Write your code for Prompt 6",
-        key="p6_modeling",
-        df=df,
-        perf=perf_for_model if 'perf_for_model' in locals() and perf_for_model is not None else df,
-    )
+        st.warning(
+            f"Could not rebuild performance table from current settings ({exc}). "
+            "Using the default backend performance table so you can continue."
+        )
+        perf_for_model = perf.copy()
 
     if st.button("Use built-in benchmark and send to Prompt 7", key="p6_builtin_benchmark", disabled=('perf_for_model' not in locals() or perf_for_model is None)):
         if 'perf_for_model' in locals() and perf_for_model is not None:
@@ -1113,6 +1419,7 @@ with st.expander("Prompt 6: Train and compare regression models", expanded=False
                 model_names=["LinearRegression", "RandomForestRegressor", "KNeighborsRegressor"],
                 test_size=test_size_pct / 100.0,
                 seed=int(random_seed),
+                include_baseline=False,
             )
             st.session_state.holdout_metrics = metrics_df
             st.session_state.holdout_models = trained_models
@@ -1122,100 +1429,81 @@ with st.expander("Prompt 6: Train and compare regression models", expanded=False
 
 
 with st.expander("Prompt 7 (Challenging): Interpret your best model", expanded=False):
-    st.info("Story beat: Ben's manager needs a decision memo before tonight's show. Explain your model choice, why it works, and where it still struggles.")
+    st.info("Story beat: turn your Prompt 6 interpretation into a short manager memo. Focus on clear communication, not more coding.")
 
     metrics_df = st.session_state.holdout_metrics
     if metrics_df is not None and not metrics_df.empty:
-        non_naive = metrics_df[metrics_df["Model"] != "NaiveMean"]
-        if not non_naive.empty:
-            best_row = non_naive.sort_values("Test_RMSE", ascending=True).iloc[0]
-            st.success(
-                f"Current best model from saved metrics: {best_row['Model']} | Test_RMSE={float(best_row['Test_RMSE']):.2f}"
-            )
-    
-    st.markdown("### Your task")
-    st.markdown("Write a **3-5 sentence executive summary** that covers:")
-    st.markdown("1. Which model won and by how much (cite Test_RMSE vs. NaiveMean baseline).")
-    st.markdown("2. Why it likely outperforms alternatives (e.g., captures nonlinearity, local patterns).")
-    st.markdown("3. Evidence of overfitting or underfitting (compare Train vs. Test metrics).")
-    st.markdown("4. One weakness or failure mode (which types of performances does it struggle with?).")
-    st.markdown("5. One concrete next step (tuning idea, new feature, or data collection).")
-    
-    render_prompt_help(
-        example_code=(
-            "# Pseudo-code recipe\n"
-            "# 1. Extract the winning model row from your Prompt 6 results\n"
-            "#    Python idea: best = result.sort_values('Test_RMSE').iloc[0]\n"
-            "# 2. Compute improvement over baseline\n"
-            "#    Python idea: baseline_rmse = result[result['Model'] == 'NaiveMean']['Test_RMSE']\n"
-            "# 3. Compare Train_RMSE vs. Test_RMSE to diagnose fit\n"
-            "# 4. Consider which prediction types might fail\n"
-            "# 5. Draft your written summary\n"
-            "# 6. Save as result (string)\n"
-        ),
-        runnable_code=(
-            "# Step 1: Summarize your Prompt 6 results\n"
-            "best_row = result.sort_values('Test_RMSE').iloc[0]\n"
-            "baseline_row = result[result['Model'] == 'NaiveMean'].iloc[0]\n"
-            "\n"
-            "# Step 2: Calculate improvement\n"
-            "improvement_pct = ((baseline_row['Test_RMSE'] - best_row['Test_RMSE']) / baseline_row['Test_RMSE'] * 100)\n"
-            "\n"
-            "# Step 3: Assess overfitting\n"
-            "train_rmse = best_row['Train_RMSE']\n"
-            "test_rmse = best_row['Test_RMSE']\n"
-            "is_overfitting = train_rmse < test_rmse * 0.8  # Train much better than test\n"
-            "\n"
-            "# Step 4: Build your summary\n"
-            "result = f\"\"\"\n"
-            "Best Model: {best_row['Model']}\n"
-            "Test RMSE: {best_row['Test_RMSE']:.2f} (vs. {baseline_row['Test_RMSE']:.2f} baseline, {improvement_pct:.1f}% better)\n"
-            "Train RMSE: {train_rmse:.2f} vs. Test RMSE: {test_rmse:.2f} -> Overfitting: {is_overfitting}\n"
-            "R2 Score: Train={best_row['Train_R2']:.3f}, Test={best_row['Test_R2']:.3f}\n\"\"\"\n"
-            "print(result)\n"
-        ),
-        prompt_key="p7_analysis",
-    )
+        best_row = metrics_df.sort_values("Test_RMSE", ascending=True).iloc[0]
+        st.success(
+            f"Current best model from saved metrics: {best_row['Model']} | Test_RMSE={float(best_row['Test_RMSE']):.2f}"
+        )
 
-    st.markdown("### Code prompt (optional, but recommended)")
-    st.caption("Use this to compute your summary from `metrics_df` before writing your final interpretation.")
-    render_code_runner(
-        label="Write code for Prompt 7 analysis (use metrics_df, then set result)",
-        key="p7_analysis_code",
-        df=df,
-        perf=perf,
-    )
+    p6_notes = str(st.session_state.get("p6_interpret_notes", "")).strip()
+    if p6_notes:
+        st.markdown("### Notes carried from Prompt 6")
+        st.info(p6_notes)
+
+    intro_col_1, intro_col_2 = st.columns(2)
+    with intro_col_1:
+        st.markdown("### Your job backstage")
+        st.markdown("Write a short note for Ben's manager, not for the data team.")
+        st.markdown("Your goal is to answer one question clearly: **Can the band trust this model before the next show?**")
+    with intro_col_2:
+        st.markdown("### Keep it stage-ready")
+        st.markdown("- Use plain English")
+        st.markdown("- Mention the winning model")
+        st.markdown("- Explain what the numbers mean for future shows")
+        st.markdown("- End with a practical next step for the band")
+
+    with st.expander("How to explain this to Ben's manager", expanded=False):
+        st.markdown("- Do not just list metrics. Explain what they mean for booking and planning future shows.")
+        st.markdown("- `Lower Test_RMSE` means the model makes smaller mistakes on new performances.")
+        st.markdown("- Be honest about limits. A useful scouting tool can still miss unusual gigs.")
+        st.markdown("- Ben's manager wants to know: what won, why it matters, what risk remains, and what the band should do next.")
+
+    st.markdown("### Build the manager memo in 4 parts")
+    st.markdown("1. **Headliner:** Which model performed best on the test set?")
+    st.markdown("2. **Show value:** Why is that useful for predicting future performance scores?")
+    st.markdown("3. **Risk:** Does the train vs. test gap suggest overfitting or instability?")
+    st.markdown("4. **Recommendation:** What should the band do next before relying on it more?")
+    
+    with st.expander("Prompt 7 writing guide", expanded=False):
+        st.markdown("1. Open with the winning model from Prompt 6.")
+        st.markdown("2. Explain in plain English what the performance means for future shows.")
+        st.markdown("3. Name one risk based on train-test behavior.")
+        st.markdown("4. End with one recommendation Ben can act on now.")
 
     if st.button("Insert writing template into Prompt 7 answer", key="insert_p7_template"):
+        prompt6_notes_block = f"Prompt 6 notes: {p6_notes}\n\n" if p6_notes else ""
         st.session_state["analysis_answer"] = (
-            "1) Winning model and evidence: <model_name> had Test_RMSE=<value>, improving over NaiveMean by <value>%.\n"
-            "2) Why it won: <short reason tied to pattern type>.\n"
-            "3) Fit diagnosis: Train vs Test gap suggests <overfitting/underfitting>.\n"
-            "4) Failure mode: biggest misses happened on <type of performances>.\n"
-            "5) Next step: I will <one concrete tuning or feature step>."
+            prompt6_notes_block +
+            "1) The best model was <model_name>, based on the lowest Test_RMSE.\n"
+            "2) Compared with the next-best model, it improved prediction error by <value>%, which means <plain English meaning for future shows>.\n"
+            "3) The train vs. test results suggest <low / moderate / high> overfitting risk.\n"
+            "4) One limitation is that the model may struggle when <type of performance or concert condition>.\n"
+            "5) My recommendation for Ben's team is to <one practical next step>."
         )
         st.success("Prompt 7 writing template inserted.")
 
-    st.caption("Sentence starters: The winning model was... | Compared with baseline... | A risk I noticed is... | Next I would...")
+    st.caption("Sentence starters: The best model was... | For Ben's next shows, this means... | One risk is... | My recommendation for the band is...")
     
     st.markdown("### Your interpretation")
     st.text_area(
-        "Write your 3-5 sentence model interpretation and next-step recommendation",
+        "Write a short manager-friendly note for Ben's band.",
         key="analysis_answer",
-        height=120,
-        placeholder="Example: RandomForest achieved Test RMSE of 8.2 vs. baseline 12.0 (32% improvement). "
-                    "Linear Regression scored 10.1, suggesting score patterns are nonlinear. "
-                    "Train RMSE was 5.8 vs. Test 8.2, indicating modest overfitting. "
-                    "Residuals suggest the model struggles on rare high-score performances. "
-                    "Next: tune max_depth and retrain with cross-validation for stability.",
+        height=150,
+        placeholder="Example: RandomForest was the strongest model because it had the lowest Test RMSE. "
+                    "Compared with the next-best model, it made meaningfully smaller prediction errors on unseen gigs, which makes it a stronger guide for future set planning. "
+                    "That suggests it could help Ben prepare for upcoming shows, but the train/test gap shows we should still watch for overfitting. "
+                    "It may struggle on unusual performances that do not sound like the past data. "
+                    "Before using it more broadly, I would validate it on more gigs and tune the model settings.",
     )
-    
-    st.markdown("### Self-check")
-    st.markdown("✓ Did you cite specific test metrics from Prompt 6?")
-    st.markdown("✓ Did you compare to the NaiveMean baseline?")
-    st.markdown("✓ Did you assess train/test gap (overfitting risk)?")
-    st.markdown("✓ Did you identify at least one failure mode?")
-    st.markdown("✓ Did you propose one concrete next step?")
+
+    st.markdown("### Final soundcheck")
+    st.markdown("- Did you explain the winner in plain English, not just with model jargon?")
+    st.markdown("- Did you mention what the result means for Ben's next shows?")
+    st.markdown("- Did you identify one risk or limitation?")
+    st.markdown("- Did you end with one practical recommendation for the band?")
 
 st.divider()
 render_team_results_store(
