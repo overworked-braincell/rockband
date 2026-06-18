@@ -1185,6 +1185,17 @@ with st.expander("Prompt 5: Prepare model-ready data", expanded=False):
     st.markdown("2. Use `train_test_split(...)` to divide the gigs into practice (train) and test sets.")
     st.markdown("3. Print the shapes so you know the split worked before Prompt 6 begins.")
 
+    st.info(
+        "📘 Quick reference: "
+        "[train_test_split documentation](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html)"
+    )
+    with st.expander("Most common train_test_split parameters for this challenge", expanded=False):
+        st.markdown("- `X, y`: Your features and target.")
+        st.markdown("- `test_size=0.2`: Keep 20% for the final test stage.")
+        st.markdown("- `random_state=42`: Makes results repeatable across runs.")
+        st.markdown("- `shuffle=True` (default): Mixes rows before splitting; usually best for this activity.")
+        st.markdown("- `stratify`: Usually not used for regression targets like `SCORE`.")
+
     render_prompt_help(
         example_code=(
             "# Pseudo-code recipe\n"
