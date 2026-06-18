@@ -1337,7 +1337,7 @@ rows.append({
     'Test_MAE': round(test_mae, 2),
     'Test_RMSE': round(test_rmse, 2),
     'Test_R2': round(test_r2, 4),
-})```""")
+})""")
         st.markdown("Save all your LinearRegression's metrics in one tidy row for the setlist.")
         
         st.markdown("**Step 7: Post the show reviews** 🏆")
