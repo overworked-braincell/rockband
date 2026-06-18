@@ -541,95 +541,26 @@ def render_prompt6_visuals(metrics_df: pd.DataFrame) -> None:
     plot_df = plot_df.sort_values("Test_RMSE", ascending=True).reset_index(drop=True)
     winner = str(plot_df.iloc[0]["Model"])
     winner_test_rmse = float(plot_df.iloc[0]["Test_RMSE"])
-    winner_gap = float(plot_df.iloc[0]["Test_RMSE"] - plot_df.iloc[0]["Train_RMSE"])
-    second_best_rmse = float(plot_df.iloc[1]["Test_RMSE"]) if len(plot_df) > 1 else np.nan
-    lead_pct = (
-        ((second_best_rmse - winner_test_rmse) / second_best_rmse) * 100
-        if not np.isnan(second_best_rmse) and second_best_rmse > 0
-        else np.nan
-    )
 
-    st.markdown("### Model Visual Dashboard")
-    st.caption(
-        "Use this panel after running Prompt 6 code. Start with winner + RMSE cards, "
-        "then read the two charts to check generalization risk."
-    )
-
-    c1, c2, c3 = st.columns(3)
+    st.markdown("### Quick results")
+    c1, c2 = st.columns(2)
     c1.metric("Top model", winner)
-    c2.metric("Winner Test_RMSE", f"{winner_test_rmse:.2f}")
-    if np.isnan(lead_pct):
-        c3.metric("Lead over #2", "N/A")
-    else:
-        c3.metric("Lead over #2", f"{lead_pct:.1f}%")
+    c2.metric("Top Test_RMSE", f"{winner_test_rmse:.2f}")
 
-    c4, c5 = st.columns(2)
-    c4.metric("Winner train-test gap", f"{winner_gap:+.2f}")
-    if winner_gap > 3.0:
-        risk_level = "High"
-    elif winner_gap > 1.5:
-        risk_level = "Moderate"
-    else:
-        risk_level = "Low"
-    risk_color = {
-        "Low": "#22c55e",
-        "Moderate": "#f59e0b",
-        "High": "#ef4444",
-    }[risk_level]
-    c5.metric(
-        "Overfitting risk",
-        risk_level,
+    st.dataframe(
+        plot_df[["Model", "Train_RMSE", "Test_RMSE"]],
+        use_container_width=True,
+        hide_index=True,
     )
 
-    st.markdown(
-        (
-            "<div style='margin-top:6px;'>"
-            "<span style='display:inline-block;padding:6px 10px;border-radius:999px;"
-            f"background:{risk_color};color:#ffffff;font-weight:600;'>"
-            f"Overfitting Risk: {risk_level}</span>"
-            "<span style='margin-left:10px;color:#d1d5db;'>"
-            "Train-Test gap guide: Low (&lt;= 1.5), Moderate (1.5 to 3.0), High (&gt; 3.0)"
-            "</span>"
-            "</div>"
-        ),
-        unsafe_allow_html=True,
-    )
-
-    st.success(f"Current winner by Test_RMSE: {winner}")
-
-    fig1, ax1 = plt.subplots(figsize=(8, 4))
-    sns.barplot(data=plot_df, x="Test_RMSE", y="Model", palette="crest", ax=ax1)
-    ax1.set_title("Leaderboard: Test RMSE by Model (Lower is Better)")
-    ax1.set_xlabel("Test RMSE")
-    ax1.set_ylabel("Model")
-    st.pyplot(fig1)
-    plt.close(fig1)
-
-    gap_df = plot_df[["Model", "Train_RMSE", "Test_RMSE"]].melt(
-        id_vars="Model",
-        var_name="Split",
-        value_name="RMSE",
-    )
-    fig2, ax2 = plt.subplots(figsize=(8, 4))
-    sns.barplot(data=gap_df, x="Model", y="RMSE", hue="Split", palette="Set2", ax=ax2)
-    ax2.set_title("Generalization Check: Train vs Test RMSE")
-    ax2.set_xlabel("Model")
-    ax2.set_ylabel("RMSE")
-    ax2.tick_params(axis="x", rotation=20)
-    st.pyplot(fig2)
-    plt.close(fig2)
-
-    with st.expander("See numeric table", expanded=False):
-        st.dataframe(
-            plot_df[["Model", "Train_RMSE", "Test_RMSE"]],
-            use_container_width=True,
-            hide_index=True,
-        )
-
-    st.markdown("### Interpretation quick-check")
-    st.markdown("- Which model has the lowest Test_RMSE?")
-    st.markdown("- Is any model's Train_RMSE much lower than Test_RMSE (overfitting warning)?")
-    st.markdown("- Would you trust the winning model on new shows, and why?")
+    with st.expander("Show chart", expanded=False):
+        fig1, ax1 = plt.subplots(figsize=(8, 3.5))
+        sns.barplot(data=plot_df, x="Test_RMSE", y="Model", palette="crest", ax=ax1)
+        ax1.set_title("Test RMSE (lower is better)")
+        ax1.set_xlabel("Test RMSE")
+        ax1.set_ylabel("Model")
+        st.pyplot(fig1)
+        plt.close(fig1)
 
 
 def compute_submission_score(
@@ -1180,36 +1111,10 @@ with st.expander("Prompt 5: Prepare model-ready data", expanded=False):
 
 
 with st.expander("Prompt 6: Train and compare regression models", expanded=False):
-    st.info("Story beat: run the rehearsal benchmark. Train three regressors and compare fairly.")
-
-    intro_col_1, intro_col_2 = st.columns(2)
-    with intro_col_1:
-        st.markdown("### Rehearsal roadmap")
-        st.markdown("1. Bring X_train, X_test, y_train, y_test from Prompt 5 (split data ready to use).")
-        st.markdown("2. Train three models on the training data.")
-        st.markdown("3. Evaluate each model on train and test data.")
-        st.markdown("4. Sort by `Test_RMSE` to see which model reads the crowd best.")
-    with intro_col_2:
-        st.markdown("### What to hand Ben")
-        st.markdown("- A final DataFrame named `result`.")
-        st.markdown("- 3 total rows: one per trained model.")
-        st.markdown("- Columns for Train/Test MAE, RMSE, and R2.")
-        st.markdown("- Lowest `Test_RMSE` at the top, so Ben can quickly see the winner.")
-
-    with st.expander("What do these models do?", expanded=False):
-        st.markdown("**LinearRegression:** Finds a straight-line pattern. It learns: 'Higher team size = higher score' or 'Faster songs = lower scores.' Simple and easy to explain.")
-        st.markdown("**RandomForestRegressor:** Like asking 100 different judges and averaging their votes. It can catch weird patterns LinearRegression misses.")
-        st.markdown("**KNeighborsRegressor:** Looks backward in time: 'Your next show is like shows #5, #12, and #18, so I'll guess the average of those.' Learns from similarity.")
-        st.markdown("\n**Train metrics:** How well the model did on past shows (it saw these before).")
-        st.markdown("**Test metrics:** How well it guesses *new* shows (it's never seen these). This is the real test.")
-
-    st.markdown("### Suggested soundcheck order")
-    st.caption("Build this one step at a time. Start with one model, then add the next two.")
-    st.markdown("**Step 1:** Load X_train, X_test, y_train, y_test from Prompt 5.")
-    st.markdown("**Step 2:** Create a list called `rows` to store results.")
-    st.markdown("**Step 3:** For each of the 3 models, fit it on train data, predict on both train and test, calculate metrics, and save.")
-    st.markdown("**Step 4:** Convert `rows` to a DataFrame and sort by `Test_RMSE` (lower is better on unseen shows).")
-    st.markdown("**Pro tip:** Run and test each step before moving to the next. Don't try to write everything at once.")
+    st.info("Prompt 6: Train 3 models, compare Test_RMSE, pick a winner.")
+    st.markdown("1. Build a `result` table with 3 model rows.")
+    st.markdown("2. Sort by `Test_RMSE` (lowest first).")
+    st.markdown("3. Write one short interpretation note.")
 
     p6_runnable_code = (
         "# STEP 1: Assume X_train, X_test, y_train, y_test are ready from Prompt 5\n"
@@ -1319,34 +1224,31 @@ with st.expander("Prompt 6: Train and compare regression models", expanded=False
             st.session_state["prompt_code_p6_modeling"] = p6_runnable_code
             st.success("Advanced starter inserted.")
 
-    tab_build, tab_visuals, tab_interpret = st.tabs(
-        ["Build", "Visualize", "Interpret"]
-    )
+    tab_build, tab_visuals, tab_interpret = st.tabs(["1 Build", "2 Visualize", "3 Interpret"])
+
+    # Default performance table for Prompt 6 code runner; rebuilt later from settings.
+    perf_for_model = perf.copy()
 
     with tab_build:
-        st.markdown("### Build Track")
-        st.caption("Goal: produce a DataFrame named result with one row per model and sorted by Test_RMSE.")
+        st.caption("Write code. Output must be `result`.")
         if beginner_mode:
             st.markdown("1. Start with one model first (LinearRegression).")
-            st.markdown("2. Make sure your code runs and returns result.")
+            st.markdown("2. Make sure it runs.")
             st.markdown("3. Add RandomForestRegressor and KNeighborsRegressor after Step 2 works.")
         else:
             st.markdown("1. Start with all three models in your models list.")
-            st.markdown("2. Run once to confirm result has 3 rows.")
-            st.markdown("3. Improve readability with comments and clear variable names.")
+            st.markdown("2. Run once to confirm `result` has 3 rows.")
+            st.markdown("3. Sort by `Test_RMSE`.")
         render_code_runner(
             label="Write your code for Prompt 6 (build the band benchmark step by step)",
             key="p6_modeling",
             df=df,
-            perf=perf_for_model if 'perf_for_model' in locals() and perf_for_model is not None else df,
+            perf=perf_for_model,
             save_result_key="p6_result_df",
         )
 
     with tab_visuals:
-        st.markdown("### Visualize Track")
-        st.caption("Goal: quickly identify the winner and check overfitting risk.")
-        st.markdown("1. Confirm which model has the lowest Test_RMSE.")
-        st.markdown("2. Check whether Train_RMSE is much lower than Test_RMSE.")
+        st.caption("Review winner and RMSE values.")
         metrics_source = st.session_state.get("p6_result_df")
         if not isinstance(metrics_source, pd.DataFrame):
             metrics_source = st.session_state.get("holdout_metrics")
@@ -1360,24 +1262,15 @@ with st.expander("Prompt 6: Train and compare regression models", expanded=False
             )
 
     with tab_interpret:
-        st.markdown("### Interpret Track")
-        st.caption("Goal: write short analysis notes now so Prompt 7 feels easier.")
-        st.markdown("1. Winner model: <name>")
-        st.markdown("2. Why it won: <lowest Test_RMSE or strongest generalization>")
-        st.markdown("3. Risk level: <low / moderate / high>")
-        st.markdown("4. One practical recommendation for Ben before next show")
+        st.caption("Keep this short. 2-4 lines total.")
         st.text_area(
             "Prompt 6 interpretation notes (used in Prompt 7)",
             key="p6_interpret_notes",
-            height=120,
-            placeholder="Example: RandomForest had the lowest Test_RMSE and moderate train-test gap, so it is the best current choice but should be validated on more gigs.",
+            height=90,
+            placeholder="Winner, why, one risk, one recommendation.",
         )
 
-    st.markdown("### Backstage checklist before the encore")
-    st.markdown("- ✅ Did you fit each model on train data and evaluate on both train and test?")
-    st.markdown("- ✅ Did your result table show exactly 3 trained models?")
-    st.markdown("- ✅ Did you compare train vs. test metrics to spot overfitting (train much better = risky)?")
-    st.markdown("- 💡 **Next:** The model with the lowest Test_RMSE is your winner for Prompt 7.")
+    st.caption("Checklist: 3 models, sorted by Test_RMSE, short interpretation note written.")
 
     st.markdown("### Built-in benchmark settings")
     st.caption("Use these to configure the optional automated benchmark button below. These do NOT affect your code.")
@@ -1429,7 +1322,7 @@ with st.expander("Prompt 6: Train and compare regression models", expanded=False
 
 
 with st.expander("Prompt 7 (Challenging): Interpret your best model", expanded=False):
-    st.info("Story beat: turn your Prompt 6 interpretation into a short manager memo. Focus on clear communication, not more coding.")
+    st.info("Prompt 7: Write a short manager memo (4-6 sentences).")
 
     metrics_df = st.session_state.holdout_metrics
     if metrics_df is not None and not metrics_df.empty:
@@ -1443,67 +1336,28 @@ with st.expander("Prompt 7 (Challenging): Interpret your best model", expanded=F
         st.markdown("### Notes carried from Prompt 6")
         st.info(p6_notes)
 
-    intro_col_1, intro_col_2 = st.columns(2)
-    with intro_col_1:
-        st.markdown("### Your job backstage")
-        st.markdown("Write a short note for Ben's manager, not for the data team.")
-        st.markdown("Your goal is to answer one question clearly: **Can the band trust this model before the next show?**")
-    with intro_col_2:
-        st.markdown("### Keep it stage-ready")
-        st.markdown("- Use plain English")
-        st.markdown("- Mention the winning model")
-        st.markdown("- Explain what the numbers mean for future shows")
-        st.markdown("- End with a practical next step for the band")
-
-    with st.expander("How to explain this to Ben's manager", expanded=False):
-        st.markdown("- Do not just list metrics. Explain what they mean for booking and planning future shows.")
-        st.markdown("- `Lower Test_RMSE` means the model makes smaller mistakes on new performances.")
-        st.markdown("- Be honest about limits. A useful scouting tool can still miss unusual gigs.")
-        st.markdown("- Ben's manager wants to know: what won, why it matters, what risk remains, and what the band should do next.")
-
-    st.markdown("### Build the manager memo in 4 parts")
-    st.markdown("1. **Headliner:** Which model performed best on the test set?")
-    st.markdown("2. **Show value:** Why is that useful for predicting future performance scores?")
-    st.markdown("3. **Risk:** Does the train vs. test gap suggest overfitting or instability?")
-    st.markdown("4. **Recommendation:** What should the band do next before relying on it more?")
-    
-    with st.expander("Prompt 7 writing guide", expanded=False):
-        st.markdown("1. Open with the winning model from Prompt 6.")
-        st.markdown("2. Explain in plain English what the performance means for future shows.")
-        st.markdown("3. Name one risk based on train-test behavior.")
-        st.markdown("4. End with one recommendation Ben can act on now.")
+    st.markdown("Use plain English: winner, why it matters, one risk, one recommendation.")
 
     if st.button("Insert writing template into Prompt 7 answer", key="insert_p7_template"):
         prompt6_notes_block = f"Prompt 6 notes: {p6_notes}\n\n" if p6_notes else ""
         st.session_state["analysis_answer"] = (
             prompt6_notes_block +
-            "1) The best model was <model_name>, based on the lowest Test_RMSE.\n"
-            "2) Compared with the next-best model, it improved prediction error by <value>%, which means <plain English meaning for future shows>.\n"
-            "3) The train vs. test results suggest <low / moderate / high> overfitting risk.\n"
-            "4) One limitation is that the model may struggle when <type of performance or concert condition>.\n"
-            "5) My recommendation for Ben's team is to <one practical next step>."
+            "Winner model: <model_name>.\n"
+            "Why it won: <simple reason using Test_RMSE>.\n"
+            "Risk: <one overfitting or reliability risk>.\n"
+            "Recommendation: <one next step for Ben>."
         )
         st.success("Prompt 7 writing template inserted.")
 
-    st.caption("Sentence starters: The best model was... | For Ben's next shows, this means... | One risk is... | My recommendation for the band is...")
+    st.caption("Keep it short and clear.")
     
     st.markdown("### Your interpretation")
     st.text_area(
         "Write a short manager-friendly note for Ben's band.",
         key="analysis_answer",
-        height=150,
-        placeholder="Example: RandomForest was the strongest model because it had the lowest Test RMSE. "
-                    "Compared with the next-best model, it made meaningfully smaller prediction errors on unseen gigs, which makes it a stronger guide for future set planning. "
-                    "That suggests it could help Ben prepare for upcoming shows, but the train/test gap shows we should still watch for overfitting. "
-                    "It may struggle on unusual performances that do not sound like the past data. "
-                    "Before using it more broadly, I would validate it on more gigs and tune the model settings.",
+        height=120,
+        placeholder="Example: RandomForest was best because it had the lowest Test_RMSE. It should help forecast future shows, but we should watch for overfitting. Next step: validate on more gigs.",
     )
-
-    st.markdown("### Final soundcheck")
-    st.markdown("- Did you explain the winner in plain English, not just with model jargon?")
-    st.markdown("- Did you mention what the result means for Ben's next shows?")
-    st.markdown("- Did you identify one risk or limitation?")
-    st.markdown("- Did you end with one practical recommendation for the band?")
 
 st.divider()
 render_team_results_store(
