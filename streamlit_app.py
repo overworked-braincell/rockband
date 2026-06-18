@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import streamlit as st
+from matplotlib.backends.backend_pdf import PdfPages
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.inspection import permutation_importance
@@ -679,6 +680,38 @@ def compute_submission_score(
     }
 
 
+def _build_results_pdf_bytes(summary_df: pd.DataFrame, title: str, subtitle: str) -> bytes:
+    display_df = summary_df.copy()
+    for col in display_df.columns:
+        display_df[col] = display_df[col].astype(str).str.replace("\n", " ", regex=False).str.slice(0, 80)
+
+    buffer = io.BytesIO()
+    with PdfPages(buffer) as pdf:
+        fig, ax = plt.subplots(figsize=(11, 8.5))
+        ax.axis("off")
+        ax.set_title(title, loc="left", fontsize=14, fontweight="bold", pad=12)
+        ax.text(0.0, 0.97, subtitle, transform=ax.transAxes, fontsize=10, va="top")
+
+        if display_df.empty:
+            ax.text(0.0, 0.85, "No submissions saved yet.", transform=ax.transAxes, fontsize=11)
+        else:
+            table = ax.table(
+                cellText=display_df.values,
+                colLabels=display_df.columns,
+                loc="center",
+                cellLoc="left",
+                colLoc="left",
+            )
+            table.auto_set_font_size(False)
+            table.set_fontsize(8)
+            table.scale(1, 1.25)
+
+        pdf.savefig(fig, bbox_inches="tight")
+        plt.close(fig)
+
+    return buffer.getvalue()
+
+
 def render_team_results_store(
     remove_outliers: bool,
     test_size_pct: int,
@@ -757,17 +790,67 @@ def render_team_results_store(
         "challenge_unlock_tally_json": unlock_tally_json,
     }
 
-    output_path = Path("team_results.csv")
+    store_path = Path("team_results_store.json")
+    if store_path.exists():
+        try:
+            existing_records = json.loads(store_path.read_text(encoding="utf-8"))
+            if not isinstance(existing_records, list):
+                existing_records = []
+        except Exception:
+            existing_records = []
+    else:
+        existing_records = []
+
+    existing_records.append(result_row)
+    store_path.write_text(json.dumps(existing_records, indent=2), encoding="utf-8")
+
+    save_df = pd.DataFrame(existing_records)
     new_row_df = pd.DataFrame([result_row])
 
-    if output_path.exists():
-        existing_df = pd.read_csv(output_path)
-        save_df = pd.concat([existing_df, new_row_df], ignore_index=True)
-    else:
-        save_df = new_row_df
+    summary_cols = [
+        "timestamp",
+        "team_name",
+        "team_members",
+        "best_model",
+        "best_test_rmse",
+        "challenge_points",
+        "challenge_tally_total",
+    ]
+    summary_df = save_df[summary_cols].copy() if not save_df.empty else pd.DataFrame(columns=summary_cols)
+    single_summary_df = new_row_df[summary_cols].copy()
 
-    save_df.to_csv(output_path, index=False)
+    all_pdf_bytes = _build_results_pdf_bytes(
+        summary_df,
+        title="Ben's Rock Band - Team Results",
+        subtitle="All saved team submissions",
+    )
+    safe_team_name = "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in team_name.strip()) or "team"
+    single_pdf_bytes = _build_results_pdf_bytes(
+        single_summary_df,
+        title="Ben's Rock Band - Team Submission",
+        subtitle=f"Team: {team_name.strip()}",
+    )
+
+    output_path = Path("team_results.pdf")
+    output_path.write_bytes(all_pdf_bytes)
+    single_output_path = Path(f"team_results_{safe_team_name}.pdf")
+    single_output_path.write_bytes(single_pdf_bytes)
+
     st.success(f"Saved team results to {output_path.name}")
+    st.download_button(
+        "Download all team results PDF",
+        data=all_pdf_bytes,
+        file_name=output_path.name,
+        mime="application/pdf",
+        key="download_team_results_pdf",
+    )
+    st.download_button(
+        "Download this submission PDF",
+        data=single_pdf_bytes,
+        file_name=single_output_path.name,
+        mime="application/pdf",
+        key="download_single_submission_pdf",
+    )
     st.markdown("### Unlock and penalty tally")
     st.caption("This shows where runnable examples were unlocked and how each unlock affected points.")
     st.dataframe(pd.DataFrame(tally_rows), use_container_width=True)
@@ -842,13 +925,12 @@ p6_challenge_answer = str(st.session_state["challenge_answer_p6_modeling"]).stri
 
 st.markdown(
     """
-Scene 1: Backstage intake - open Ben's gig history and preview rows.\n
-Scene 2: Feature planning - define target and choose candidate predictors.\n
-Scene 3: Crowd pulse check - profile statistics to understand score behavior.\n
-Scene 4: Setlist cleanup - keep only useful columns for fair prediction.\n
-Scene 5: Data prep lab - build model-ready inputs and split train/test fairly.\n
-Scene 6: Rehearsal benchmark - train and compare regression models (Linear, RF, KNN).\n
-Scene 7: Manager debrief - explain which model best predicts show performance and why.\n
+Scene 1 (Prompt 1): Backstage intake - preview the first 5 rows of Ben's raw gig history.\n
+Scene 2 (Prompt 2): Crowd pulse check - run summary stats, then clean SCORE outliers as a mini challenge.\n
+Scene 3 (Prompt 3): Setlist cleanup - drop IDs, private info, and leakage-prone columns.\n
+Scene 4 (Prompt 4): Band strategy setup - define SCORE as the target and pick candidate features.\n
+Scene 5 (Prompt 5): Soundcheck split - create model-ready train/test datasets.\n
+Scene 6 (Prompt 6): Rehearsal lab + debrief - train LinearRegression, compare against RF/KNN, tune settings, and write your recommendation for Ben.\n
     """
 )
 
@@ -1270,6 +1352,11 @@ rows.append({
         st.caption(
             "Adjust split and LinearRegression settings, then run a tuned version to compare against your original row."
         )
+        st.markdown(
+            "**How to use these toggles:**\n"
+            "- **Use intercept term (fit_intercept):** Lets the model start from a baseline score. Keep this on in most cases.\n"
+            "- **Force positive coefficients (positive):** Only allows non-negative feature effects. Use this if you want a constrained model where features cannot reduce predictions."
+        )
         t1, t2 = st.columns(2)
         with t1:
             tune_test_size = st.slider(
@@ -1290,14 +1377,20 @@ rows.append({
             )
         with t2:
             tune_fit_intercept = st.checkbox(
-                "fit_intercept=True",
+                "Use intercept term (fit_intercept)",
                 value=True,
                 key="p6_tune_fit_intercept",
             )
             tune_positive = st.checkbox(
-                "positive=True",
+                "Force positive coefficients (positive)",
                 value=False,
                 key="p6_tune_positive",
+            )
+            st.caption(
+                "Tip: Turning off intercept can hurt performance unless data is centered."
+            )
+            st.caption(
+                "Tip: Positive-only coefficients can improve interpretability but may increase Test_RMSE."
             )
 
         if st.button("Run tuned LinearRegression", key="p6_run_tuned_lr"):
@@ -1423,12 +1516,27 @@ rows.append({
     st.markdown("---")
     st.markdown("### 💭 Step 3: Write Your Interpretation")
     st.caption("Which model won overall, and why? Note one key insight from the comparison.")
+    with st.expander("🎙️ Band Debrief Coach: Tie your answer to the story", expanded=False):
+        st.markdown(
+            "Write this like you're briefing Ben after rehearsal:\n"
+            "- **Who sounded best tonight?** Name the winning model (lowest Test_RMSE).\n"
+            "- **Was it stage-ready?** Compare Train_RMSE vs Test_RMSE to explain consistency.\n"
+            "- **Why did it perform that way?** Mention pattern complexity (simple vs non-linear).\n"
+            "- **Final recommendation:** What lineup should Ben take to the next show?"
+        )
+        st.markdown("**Starter lines you can remix:**")
+        st.markdown(
+            "- In tonight's rehearsal, the strongest lineup was **[model]** with Test_RMSE = [value].\n"
+            "- The train-to-test gap was [small/large], which suggests [good generalization/overfitting].\n"
+            "- Compared with LinearRegression, [RandomForest/KNN] handled the setlist better because [reason].\n"
+            "- For Ben's next gig, I recommend [model] as the lead act."
+        )
 
     st.text_area(
         "Your Prompt 6 interpretation",
         key="p6_interpret_notes",
         height=100,
-        placeholder="Example: My LinearRegression got Test_RMSE=10.2. RandomForest was better at 8.5 because it handles non-linear patterns. The gap between train and test shows RandomForest generalizes well. I'd recommend using RandomForest for Ben's predictions.",
+        placeholder="Example: In tonight's rehearsal, RandomForest sounded best with the lowest Test_RMSE. Its train and test scores were close, so it looks stage-ready for unseen gigs. LinearRegression was a solid opening act, but it missed some non-linear patterns in the setlist data. For Ben's next show, I would headline RandomForest.",
     )
 
     st.markdown("---")
