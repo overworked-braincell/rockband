@@ -1,6 +1,7 @@
 from pathlib import Path
 import contextlib
 import io
+import textwrap
 import traceback
 import json
 
@@ -422,7 +423,12 @@ def _render_free_runnable(
     prompt_key: str,
     penalty_points: float = 0.0,
 ) -> None:
-    with st.expander("Runnable example", expanded=False):
+    expander_title = (
+        f"Runnable example hint (unlock costs -{penalty_points:g} points)"
+        if penalty_points > 0
+        else "Runnable example hint (no deduction)"
+    )
+    with st.expander(expander_title, expanded=False):
         st.markdown("### Runnable reference code")
         reveal_key = f"free_runnable_revealed_{prompt_key}"
         if penalty_points > 0 and not st.session_state.get(reveal_key, False):
@@ -459,7 +465,12 @@ def _render_locked_runnable(
     penalty_points: float,
     prompt_key: str,
 ) -> None:
-    with st.expander("Runnable example (locked)", expanded=bool(current_answer)):
+    expander_title = (
+        f"Runnable example hint (locked, unlock costs -{penalty_points:g} points)"
+        if penalty_points > 0
+        else "Runnable example hint (locked, no deduction)"
+    )
+    with st.expander(expander_title, expanded=bool(current_answer)):
         st.markdown("### Challenge unlock")
         st.markdown("Answer the challenge question correctly to reveal the runnable reference code.")
         st.markdown(challenge_question)
@@ -494,7 +505,7 @@ def render_prompt_help(
     current_answer = str(st.session_state.get(answer_key, "")).strip()
     penalty_points = float(CHALLENGE_PENALTIES.get(prompt_key, 3.0))
 
-    with st.expander("Pseudo-code", expanded=False):
+    with st.expander("Pseudo-code hint (no deduction)", expanded=False):
         st.markdown("### Pseudo-code guidance")
         st.markdown("Use this as a simple recipe. Read one line, write one matching Python line.")
         st.code(example_code.strip(), language="python")
@@ -712,13 +723,182 @@ def _build_results_pdf_bytes(summary_df: pd.DataFrame, title: str, subtitle: str
     return buffer.getvalue()
 
 
+def _build_submission_detail_pdf_bytes(submission_df: pd.DataFrame, title: str, subtitle: str) -> bytes:
+    def _val(row: dict[str, object], key: str) -> str:
+        value = row.get(key, "")
+        if pd.isna(value):
+            return ""
+        return str(value).strip()
+
+    def _add_wrapped_block(ax: plt.Axes, x: float, y: float, heading: str, body: str, width: int = 105) -> float:
+        lines = [heading]
+        lines.extend(textwrap.wrap(body if body else "-", width=width))
+        block = "\n".join(lines)
+        ax.text(x, y, block, transform=ax.transAxes, fontsize=9, va="top", family="monospace")
+        # Rough vertical spacing so stacked blocks do not overlap.
+        return y - (0.03 * (len(lines) + 1))
+
+    buffer = io.BytesIO()
+    with PdfPages(buffer) as pdf:
+        fig, ax = plt.subplots(figsize=(11, 8.5))
+        ax.axis("off")
+        ax.set_title(title, loc="left", fontsize=14, fontweight="bold", pad=12)
+        ax.text(0.0, 0.97, subtitle, transform=ax.transAxes, fontsize=10, va="top")
+
+        if submission_df.empty:
+            ax.text(0.0, 0.85, "No submission details available.", transform=ax.transAxes, fontsize=11)
+        else:
+            row = submission_df.iloc[0].to_dict()
+            summary_rows = [
+                ["Timestamp", _val(row, "timestamp")],
+                ["Team", _val(row, "team_name")],
+                ["Members", _val(row, "team_members")],
+                ["Best Model", _val(row, "best_model")],
+                ["Best Test RMSE", _val(row, "best_test_rmse")],
+                ["Challenge Points", _val(row, "challenge_points")],
+                ["Prompt 6 Trivia Bonus Awarded", _val(row, "p6_bonus_awarded")],
+                ["Prompt 6 Trivia Bonus Points", _val(row, "p6_bonus_points")],
+                ["Hint Points Used (Total)", _val(row, "hint_points_used_total")],
+                ["Challenge Tally Total", _val(row, "challenge_tally_total")],
+                ["Remove Outliers", _val(row, "remove_outliers")],
+                ["Test Size %", _val(row, "test_size_pct")],
+                ["Random Seed", _val(row, "random_seed")],
+            ]
+
+            summary_table = ax.table(
+                cellText=summary_rows,
+                colLabels=["Field", "Value"],
+                cellLoc="left",
+                colLoc="left",
+                bbox=[0.0, 0.42, 1.0, 0.48],
+            )
+            summary_table.auto_set_font_size(False)
+            summary_table.set_fontsize(9)
+
+            y = 0.37
+            y = _add_wrapped_block(ax, 0.0, y, "Notes:", _val(row, "notes"))
+            y = _add_wrapped_block(ax, 0.0, y, "Interpretation:", _val(row, "analysis_answer"))
+
+            unlock_json = _val(row, "challenge_unlock_tally_json")
+            try:
+                unlock_rows = json.loads(unlock_json) if unlock_json else []
+                if isinstance(unlock_rows, list) and unlock_rows:
+                    unlock_summary = ", ".join(
+                        f"{r.get('prompt')}: {r.get('points_applied')}"
+                        for r in unlock_rows
+                        if isinstance(r, dict)
+                    )
+                    _add_wrapped_block(ax, 0.0, y, "Unlock Tally by Prompt:", unlock_summary)
+            except Exception:
+                _add_wrapped_block(ax, 0.0, y, "Unlock Tally:", unlock_json)
+
+        pdf.savefig(fig, bbox_inches="tight")
+        plt.close(fig)
+
+        if not submission_df.empty:
+            row = submission_df.iloc[0].to_dict()
+            scene_sections = [
+                ("Scene 1: Prompt 1 - Return first 5 rows", _val(row, "prompt1_code")),
+                ("Scene 2: Prompt 2 - Run simple statistics", _val(row, "prompt2_code")),
+                ("Scene 2b: Prompt 2 - Outlier challenge", _val(row, "prompt2_outlier_code")),
+                ("Scene 3: Prompt 3 - Drop non-model columns", _val(row, "prompt3_code")),
+                ("Scene 4: Prompt 4 - Define target/features", _val(row, "prompt4_code")),
+                ("Scene 5: Prompt 5 - Prepare model-ready split", _val(row, "prompt5_code")),
+                ("Scene 6: Prompt 6 - Train and compare models", _val(row, "prompt6_code")),
+                ("Scene 6 Debrief - Interpretation", _val(row, "analysis_answer")),
+            ]
+
+            for scene_title, user_answer in scene_sections:
+                fig_scene, ax_scene = plt.subplots(figsize=(11, 8.5))
+                ax_scene.axis("off")
+                ax_scene.set_title(scene_title, loc="left", fontsize=13, fontweight="bold", pad=12)
+                body = user_answer if user_answer else "No answer submitted."
+                wrapped = "\n".join(textwrap.wrap(body, width=120, replace_whitespace=False))
+                scene_text = "User answer:\n\n" + wrapped
+                ax_scene.text(
+                    0.0,
+                    0.96,
+                    scene_text,
+                    transform=ax_scene.transAxes,
+                    fontsize=8.7,
+                    va="top",
+                    family="monospace",
+                )
+                pdf.savefig(fig_scene, bbox_inches="tight")
+                plt.close(fig_scene)
+
+            fig_hint, ax_hint = plt.subplots(figsize=(11, 8.5))
+            ax_hint.axis("off")
+            ax_hint.set_title("Hints, Deductions, and Totals", loc="left", fontsize=13, fontweight="bold", pad=12)
+
+            unlock_rows_raw = []
+            unlock_json = _val(row, "challenge_unlock_tally_json")
+            try:
+                parsed = json.loads(unlock_json) if unlock_json else []
+                if isinstance(parsed, list):
+                    unlock_rows_raw = [r for r in parsed if isinstance(r, dict)]
+            except Exception:
+                unlock_rows_raw = []
+
+            prompt_scene_labels = {
+                "p1": "Scene 1",
+                "p2_stats": "Scene 2",
+                "p2_outliers": "Scene 2b",
+                "p3_drop": "Scene 3",
+                "p4_shape": "Scene 4",
+                "p5_prepare": "Scene 5",
+                "p6_modeling": "Scene 6",
+            }
+
+            hint_rows = []
+            for entry in unlock_rows_raw:
+                prompt_key = str(entry.get("prompt", ""))
+                scene_label = prompt_scene_labels.get(prompt_key, prompt_key)
+                unlocked = bool(entry.get("runnable_unlocked", False))
+                points_applied = float(entry.get("points_applied", 0.0))
+                hint_rows.append(
+                    [
+                        scene_label,
+                        "Yes" if unlocked else "No",
+                        f"{points_applied:+g}",
+                    ]
+                )
+
+            if hint_rows:
+                hint_table = ax_hint.table(
+                    cellText=hint_rows,
+                    colLabels=["Scene", "Hint Unlocked", "Deduction Applied"],
+                    cellLoc="left",
+                    colLoc="left",
+                    bbox=[0.0, 0.45, 1.0, 0.45],
+                )
+                hint_table.auto_set_font_size(False)
+                hint_table.set_fontsize(9)
+            else:
+                ax_hint.text(0.0, 0.88, "No hint unlock activity recorded.", transform=ax_hint.transAxes, fontsize=10, va="top")
+
+            totals_text = (
+                "Totals:\n"
+                f"- Prompt 6 trivia bonus awarded: {_val(row, 'p6_bonus_awarded') or 'False'}\n"
+                f"- Prompt 6 trivia bonus points: {_val(row, 'p6_bonus_points') or '0'}\n"
+                f"- Hint points used total: {_val(row, 'hint_points_used_total') or '0'}\n"
+                f"- Challenge tally total: {_val(row, 'challenge_tally_total') or '0'}\n"
+                f"- Overall challenge points: {_val(row, 'challenge_points') or '0'}"
+            )
+            ax_hint.text(0.0, 0.38, totals_text, transform=ax_hint.transAxes, fontsize=10, va="top")
+            pdf.savefig(fig_hint, bbox_inches="tight")
+            plt.close(fig_hint)
+
+    return buffer.getvalue()
+
+
 def render_team_results_store(
     remove_outliers: bool,
     test_size_pct: int,
     random_seed: int,
 ) -> None:
     st.subheader("Team Results Submission")
-    st.caption("Save each team submission to a CSV so results can be reviewed later.")
+    st.caption("Save each team submission so results can be reviewed later.")
 
     with st.form("team_results_form"):
         team_name = st.text_input("Team name")
@@ -779,13 +959,18 @@ def render_team_results_store(
         "best_model": best_model,
         "best_test_rmse": best_test_rmse,
         "challenge_points": round(challenge_points, 2),
+        "p6_bonus_awarded": bool(st.session_state.get("p6_bonus_awarded", False)),
+        "p6_bonus_points": 5.0 if bool(st.session_state.get("p6_bonus_awarded", False)) else 0.0,
+        "hint_points_used_total": round(abs(running_tally), 2),
         "challenge_tally_total": round(running_tally, 2),
-        "analysis_answer": str(st.session_state.get("analysis_answer", "")).strip(),
+        "analysis_answer": str(st.session_state.get("p6_interpret_notes", st.session_state.get("analysis_answer", ""))).strip(),
         "prompt1_code": str(st.session_state.get("prompt_code_p1", "")),
-        "prompt2_code": str(st.session_state.get("prompt_code_p2_shape", "")),
-        "prompt3_code": str(st.session_state.get("prompt_code_p3_stats", "")),
-        "prompt3_outlier_code": str(st.session_state.get("prompt_code_p3_outliers", "")),
-        "prompt4_code": str(st.session_state.get("prompt_code_p4_drop", "")),
+        "prompt2_code": str(st.session_state.get("prompt_code_p2_stats", "")),
+        "prompt2_outlier_code": str(st.session_state.get("prompt_code_p2_outliers", "")),
+        "prompt3_code": str(st.session_state.get("prompt_code_p3_drop", "")),
+        "prompt4_code": str(st.session_state.get("prompt_code_p4_shape", "")),
+        "prompt5_code": str(st.session_state.get("prompt_code_p5_prepare", "")),
+        "prompt6_code": str(st.session_state.get("prompt_code_p6_modeling", "")),
         "metrics_json": json.dumps(json.loads(metrics_json)) if metrics_json else "",
         "challenge_unlock_tally_json": unlock_tally_json,
     }
@@ -814,10 +999,37 @@ def render_team_results_store(
         "best_model",
         "best_test_rmse",
         "challenge_points",
+        "hint_points_used_total",
         "challenge_tally_total",
     ]
     summary_df = save_df[summary_cols].copy() if not save_df.empty else pd.DataFrame(columns=summary_cols)
-    single_summary_df = new_row_df[summary_cols].copy()
+    single_pdf_cols = [
+        "timestamp",
+        "team_name",
+        "team_members",
+        "notes",
+        "remove_outliers",
+        "test_size_pct",
+        "random_seed",
+        "best_model",
+        "best_test_rmse",
+        "challenge_points",
+        "p6_bonus_awarded",
+        "p6_bonus_points",
+        "hint_points_used_total",
+        "challenge_tally_total",
+        "analysis_answer",
+        "prompt1_code",
+        "prompt2_code",
+        "prompt2_outlier_code",
+        "prompt3_code",
+        "prompt4_code",
+        "prompt5_code",
+        "prompt6_code",
+        "metrics_json",
+        "challenge_unlock_tally_json",
+    ]
+    single_summary_df = new_row_df[single_pdf_cols].copy()
 
     all_pdf_bytes = _build_results_pdf_bytes(
         summary_df,
@@ -825,7 +1037,7 @@ def render_team_results_store(
         subtitle="All saved team submissions",
     )
     safe_team_name = "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in team_name.strip()) or "team"
-    single_pdf_bytes = _build_results_pdf_bytes(
+    single_pdf_bytes = _build_submission_detail_pdf_bytes(
         single_summary_df,
         title="Ben's Rock Band - Team Submission",
         subtitle=f"Team: {team_name.strip()}",
@@ -838,18 +1050,11 @@ def render_team_results_store(
 
     st.success(f"Saved team results to {output_path.name}")
     st.download_button(
-        "Download all team results PDF",
-        data=all_pdf_bytes,
-        file_name=output_path.name,
-        mime="application/pdf",
-        key="download_team_results_pdf",
-    )
-    st.download_button(
-        "Download this submission PDF",
+        "Download team results PDF",
         data=single_pdf_bytes,
         file_name=single_output_path.name,
         mime="application/pdf",
-        key="download_single_submission_pdf",
+        key="download_team_results_pdf_single",
     )
     st.markdown("### Unlock and penalty tally")
     st.caption("This shows where runnable examples were unlocked and how each unlock affected points.")
@@ -1337,7 +1542,7 @@ rows.append({
     'Test_MAE': round(test_mae, 2),
     'Test_RMSE': round(test_rmse, 2),
     'Test_R2': round(test_r2, 4),
-})""")
+})```""")
         st.markdown("Save all your LinearRegression's metrics in one tidy row for the setlist.")
         
         st.markdown("**Step 7: Post the show reviews** 🏆")
